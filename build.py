@@ -241,6 +241,17 @@ def gerar() -> None:
     # Sinaliza ao GitHub Pages para nao processar com Jekyll.
     (DIST / ".nojekyll").write_text("", encoding="utf-8")
 
+    # Arquivos de verificacao de propriedade (Google Search Console, Bing
+    # Webmaster Tools etc.) precisam ficar na RAIZ do site publicado, com o
+    # conteudo intacto — nao passam pelo motor de paginas. Qualquer
+    # "*-verification*.html" ou "google*.html"/"BingSiteAuth.xml" solto na
+    # raiz do projeto e copiado como esta para dist/.
+    padroes_verificacao = ["google*.html", "*-verification*.html", "BingSiteAuth.xml", "yandex_*.html"]
+    for padrao in padroes_verificacao:
+        for arquivo in RAIZ.glob(padrao):
+            shutil.copy2(arquivo, DIST / arquivo.name)
+            print(f"  copiado {arquivo.name} (verificacao de propriedade)")
+
     indice = [
         {"slug": p.slug, "titulo": p.titulo, "url": p.url, "secao": p.secao}
         for p in paginas
