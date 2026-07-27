@@ -312,5 +312,59 @@ mapeamento §§ → página do PDF está nos blocos da própria página do Catec
 
 ## Publicação
 
-`dist/` é uma pasta estática comum — serve em GitHub Pages, Netlify, Vercel ou
-Cloudflare Pages. O arquivo `.nojekyll` já é gerado para o GitHub Pages.
+O site está publicado em **https://leonardo-beranger.github.io/catholic-day/**,
+via GitHub Pages + GitHub Actions. Repositório:
+https://github.com/leonardo-beranger/catholic-day (público).
+
+### Como funciona o deploy automático
+
+`.github/workflows/deploy.yml` roda em três situações:
+
+- **Todo dia às 06:00** (horário de Brasília) — chama `python build.py --atualizar`
+  (coleta notícias + santo do dia, depois gera o site) e publica.
+- **A cada push na `main`** — publica alterações de conteúdo/código na hora.
+- **Manualmente**, pelo botão "Run workflow" na aba *Actions* do GitHub.
+
+Não precisa de servidor próprio nem de deixar o PC ligado: o GitHub Actions
+roda tudo (é grátis para repositórios públicos).
+
+### BASE_PATH — por que existe e quando importa
+
+O repositório chama-se `catholic-day`, não `leonardo-beranger.github.io`,
+então o GitHub Pages serve o conteúdo em `/catholic-day/`, não na raiz do
+domínio. Isso quebraria todo link e recurso absoluto do site
+(`/estatico/...`, `/img/...`, os `fetch()` do JS) se nada fosse feito.
+
+A solução, em `build.py`:
+
+- `BASE_PATH` (variável de ambiente, vazia por padrão) é prefixada em todo
+  `href`/`src`/`action`/`data-pdf` que começa com uma única barra, na hora de
+  montar cada página (`prefixar_base_path`).
+- `window.BASE_PATH` é injetado no `<head>` (via `templates/base.html`) para
+  que os scripts (`noticias.js`, `santo.js`, `principal.js`) montem as suas
+  próprias URLs (`fetch`, PDFs) corretamente também.
+- **Localmente** (`python build.py --servir`), `BASE_PATH` fica vazio — o
+  servidor local já serve tudo a partir da raiz, então os caminhos
+  absolutos funcionam sem prefixo nenhum, como sempre funcionaram.
+- **Em produção**, o workflow define `BASE_PATH=/catholic-day` antes de
+  rodar o build. Se um dia trocar para domínio próprio (que serve na raiz
+  independente do nome do repositório), é só apagar essa variável do
+  workflow.
+
+Para testar o comportamento de produção localmente:
+`BASE_PATH=/catholic-day python build.py` (no Git Bash, prefixe com
+`MSYS_NO_PATHCONV=1` para o Git Bash não converter `/catholic-day` num
+caminho de arquivo do Windows).
+
+### SEO — sitemap, robots.txt, canonical
+
+`build.py` também gera `dist/sitemap.xml` e `dist/robots.txt` (função
+`gerar_seo`), e cada página leva uma tag `<link rel="canonical">` apontando
+para a URL pública correspondente. `SITE_URL` (topo do `build.py`) é a fonte
+única desse endereço — ajuste ali se o domínio mudar.
+
+Isso resolve a parte técnica de SEO; falta ainda, manualmente (fora do
+código): cadastrar o site no
+[Google Search Console](https://search.google.com/search-console) (confirma
+a posse do domínio e pede indexação) — sem isso, o Google pode demorar
+semanas para descobrir o site sozinho.

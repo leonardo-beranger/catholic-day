@@ -11,7 +11,7 @@
   const raiz = document.getElementById("noticias");
   if (!raiz) return;
 
-  const FONTE_DADOS = "/dados/noticias.json";
+  const FONTE_DADOS = (window.BASE_PATH || "") + "/dados/noticias.json";
   const INTERVALO = 7000;
 
   const elCarregando = document.getElementById("noticias-carregando");

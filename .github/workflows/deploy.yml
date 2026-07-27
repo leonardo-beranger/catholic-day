@@ -1,0 +1,60 @@
+name: Atualizar e publicar o site
+
+# Roda em tres situacoes:
+# 1. Todo dia as 06:00 (horario de Brasilia) — busca noticias/santo do dia e republica.
+# 2. A cada push na main — publica alteracoes de conteudo/codigo imediatamente.
+# 3. Manualmente, pelo botao "Run workflow" na aba Actions do GitHub.
+on:
+  schedule:
+    - cron: "0 9 * * *" # 09:00 UTC = 06:00 America/Sao_Paulo
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita duas publicacoes simultaneas disputando o mesmo deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Coletar noticias e santo do dia, e gerar o site
+        env:
+          # O repositorio "catholic-day" nao e' <usuario>.github.io, entao o
+          # GitHub Pages serve o conteudo em /catholic-day/, nao na raiz do
+          # dominio. Sem isto, todo link e recurso absoluto (/estatico/...,
+          # /img/..., os fetch() do JS) apontaria para o lugar errado em
+          # producao. Ver a explicacao completa no topo do build.py.
+          BASE_PATH: /catholic-day
+        run: python build.py --atualizar
+
+      - name: Preparar artefacto do GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

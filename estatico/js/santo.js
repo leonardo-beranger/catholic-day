@@ -12,7 +12,7 @@
   const raiz = document.getElementById("santo");
   if (!raiz) return;
 
-  const FONTE_DADOS = "/dados/santos.json";
+  const FONTE_DADOS = (window.BASE_PATH || "") + "/dados/santos.json";
 
   const elCarregando = document.getElementById("santo-carregando");
   const elErro = document.getElementById("santo-erro");

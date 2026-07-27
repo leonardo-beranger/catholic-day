@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import http.server
 import json
+import os
 import re
 import shutil
 import sys
@@ -28,6 +29,21 @@ DOCUMENTOS = RAIZ / "documentos"
 DIST = RAIZ / "dist"
 
 SITE_NOME = "Catholic Day"
+
+# O repositorio chama-se "catholic-day" (nao "leonardo-beranger.github.io"),
+# entao o GitHub Pages serve o site em /catholic-day/, nao na raiz do
+# dominio. BASE_PATH e' reescrito em todo caminho absoluto ("/estatico/...",
+# "/img/...", os links do menu, os fetch() do JS) na hora de gerar o site.
+#
+# Localmente (`python build.py --servir`) o servidor serve tudo a partir da
+# raiz, entao o padrao e' vazio; a Action do GitHub define BASE_PATH via
+# variavel de ambiente antes de rodar o build. Se um dia for usado dominio
+# proprio, e' so definir BASE_PATH="" no workflow (ou apagar a variavel).
+BASE_PATH = os.environ.get("BASE_PATH", "").rstrip("/")
+
+# URL publica completa, usada no sitemap.xml e em tags de SEO. Ajuste aqui se
+# trocar de dominio.
+SITE_URL = os.environ.get("SITE_URL", "https://leonardo-beranger.github.io/catholic-day").rstrip("/")
 
 # Ordem e rotulo das secoes na navegacao.
 SECOES = [
@@ -161,6 +177,18 @@ def limpar_dist(tentativas: int = 5) -> None:
         print("  aviso: dist/ nao pôde ser removida (arquivo em uso); sobrescrevendo")
 
 
+_PADRAO_CAMINHO_ABSOLUTO = re.compile(r'(href|src|action|data-pdf)="/(?!/)')
+
+
+def prefixar_base_path(html: str) -> str:
+    """Prefixa BASE_PATH em todo href/src/action que comeca com uma unica
+    barra (caminho absoluto do site). Nao toca em "//" (protocol-relative,
+    aponta para outro dominio) nem em URLs http(s) completas."""
+    if not BASE_PATH:
+        return html
+    return _PADRAO_CAMINHO_ABSOLUTO.sub(rf'\1="{BASE_PATH}/', html)
+
+
 def gerar() -> None:
     limpar_dist()
     DIST.mkdir(parents=True, exist_ok=True)
@@ -185,8 +213,11 @@ def gerar() -> None:
                 "conteudo": pagina.corpo,
                 "scripts": pagina.tags_script,
                 "classe_pagina": f"pagina-{pagina.slug}",
+                "base_path": BASE_PATH,
+                "url_canonica": f"{SITE_URL}{pagina.url}",
             },
         )
+        html = prefixar_base_path(html)
         pagina.destino.parent.mkdir(parents=True, exist_ok=True)
         pagina.destino.write_text(html, encoding="utf-8")
         print(f"  gerado  {pagina.destino.relative_to(RAIZ)}")
@@ -217,7 +248,40 @@ def gerar() -> None:
     (DIST / "dados" / "paginas.json").write_text(
         json.dumps(indice, ensure_ascii=False, indent=2), encoding="utf-8"
     )
+
+    gerar_seo(paginas)
+
     print(f"\n{len(paginas)} páginas geradas em dist/")
+
+
+def gerar_seo(paginas: list[Pagina]) -> None:
+    """Gera sitemap.xml e robots.txt para facilitar a indexacao por
+    motores de busca (Google, Bing, etc.)."""
+    hoje = time.strftime("%Y-%m-%d")
+    # SITE_URL ja inclui o BASE_PATH quando aponta para um projeto do GitHub
+    # Pages (ex.: ".../catholic-day"); nao acrescentar BASE_PATH de novo aqui.
+    urls = "\n".join(
+        f"  <url>\n"
+        f"    <loc>{SITE_URL}{p.url}</loc>\n"
+        f"    <lastmod>{hoje}</lastmod>\n"
+        f"  </url>"
+        for p in paginas
+    )
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{urls}\n"
+        "</urlset>\n"
+    )
+    (DIST / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+
+    robots = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        f"Sitemap: {SITE_URL}/sitemap.xml\n"
+    )
+    (DIST / "robots.txt").write_text(robots, encoding="utf-8")
+    print("  gerado  dist/sitemap.xml e dist/robots.txt")
 
 
 def servir(porta: int = 8000) -> None:
