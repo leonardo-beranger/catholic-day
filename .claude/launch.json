@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "catholic-day",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["build.py", "--servir", "--porta", "8000"],
+      "port": 8000
+    }
+  ]
+}

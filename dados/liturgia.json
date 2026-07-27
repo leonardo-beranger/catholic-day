@@ -1,0 +1,15 @@
+{
+  "_comentario": "Esqueleto da liturgia diaria. Chave = data ISO (AAAA-MM-DD). Conteudo a preencher.",
+  "exemplo": {
+    "data": "0000-00-00",
+    "tempo_liturgico": "",
+    "cor": "",
+    "celebracao": "",
+    "primeira_leitura": { "referencia": "", "titulo": "", "texto": "" },
+    "salmo": { "referencia": "", "refrao": "", "estrofes": [] },
+    "segunda_leitura": { "referencia": "", "titulo": "", "texto": "" },
+    "evangelho": { "referencia": "", "aclamacao": "", "texto": "" },
+    "comentario": "",
+    "oracao_do_dia": ""
+  }
+}

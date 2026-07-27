@@ -1,0 +1,59 @@
+---
+slug: santo-do-dia
+titulo: Santo do Dia
+menu: Santo do Dia
+secao: vivencia
+ordem: 60
+scripts: santo.js
+subtitulo: O testemunho de quem viveu o Evangelho até o fim.
+descricao: Vida, virtudes e oração do santo celebrado hoje no calendário da Igreja, carregados automaticamente para o dia de hoje.
+---
+      <section class="secao">
+        <div class="santo" id="santo">
+
+          <!-- Estado: a carregar -->
+          <div class="liturgia__estado" id="santo-carregando">
+            <span class="girador" aria-hidden="true"></span>
+            <p>A carregar o santo de hoje…</p>
+          </div>
+
+          <!-- Estado: erro -->
+          <div class="liturgia__estado liturgia__estado--erro" id="santo-erro" hidden>
+            <p id="santo-erro-texto">Não foi possível carregar o santo de hoje.</p>
+            <p class="liturgia__estado__alternativa">
+              Consulte diretamente o
+              <a href="https://santo.cancaonova.com/" target="_blank" rel="noopener">Santo do
+              Dia da Canção Nova</a>.
+            </p>
+          </div>
+
+          <!-- Conteúdo -->
+          <article class="santo__ficha" id="santo-conteudo" hidden>
+            <div class="santo__moldura">
+              <img id="santo-imagem" class="santo__imagem" alt="" decoding="async">
+              <div class="santo__vinheta" aria-hidden="true"></div>
+              <h1 class="santo__nome" id="santo-nome">—</h1>
+            </div>
+
+            <div class="santo__corpo">
+              <p class="cartao__etiqueta">Hoje, <span data-data-hoje>—</span></p>
+
+              <div id="santo-biografia" class="santo__biografia"></div>
+
+              <p class="fonte-nota" id="santo-fonte-nota">
+                <strong>Fonte.</strong> Biografia carregada automaticamente do
+                <a id="santo-fonte-link" href="https://santo.cancaonova.com/" target="_blank" rel="noopener">Santo
+                do Dia da Canção Nova</a>.
+                <span id="santo-fontes-citadas"></span>
+                Nada é armazenado neste site: a cada visita, o texto é buscado na origem para
+                o dia corrente.
+              </p>
+
+              <div id="santo-oracao-bloco" class="santo__oracao" hidden>
+                <h2>Oração</h2>
+                <div id="santo-oracao-corpo"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>

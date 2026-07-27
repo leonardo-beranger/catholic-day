@@ -1,0 +1,88 @@
+---
+slug: liturgia-diaria
+titulo: Liturgia Diária
+menu: Liturgia Diária
+secao: vivencia
+ordem: 50
+scripts: liturgia.js
+subtitulo: As leituras da Missa de hoje.
+descricao: Leituras, salmo responsorial e Evangelho da liturgia diária da Igreja Católica, carregados automaticamente para o dia de hoje.
+---
+      <section class="secao">
+        <div class="liturgia" id="liturgia">
+
+          <header class="liturgia__cabecalho">
+            <p class="cartao__etiqueta">Liturgia de hoje</p>
+            <h2 data-data-hoje>—</h2>
+            <p class="liturgia__celebracao">
+              <span id="liturgia-celebracao" class="liturgia__titulo-celebracao">A carregar…</span>
+              <span id="liturgia-cor" class="selo" hidden></span>
+            </p>
+          </header>
+
+          <!-- Estado: a carregar -->
+          <div class="liturgia__estado" id="liturgia-carregando">
+            <span class="girador" aria-hidden="true"></span>
+            <p>A buscar as leituras de hoje…</p>
+          </div>
+
+          <!-- Estado: erro -->
+          <div class="liturgia__estado liturgia__estado--erro" id="liturgia-erro" hidden>
+            <p id="liturgia-erro-texto">Não foi possível carregar a liturgia de hoje.</p>
+            <button type="button" class="botao-acao" id="liturgia-recarregar">Tentar de novo</button>
+            <p class="liturgia__estado__alternativa">
+              Enquanto isso, consulte diretamente a
+              <a href="https://liturgia.cancaonova.com/pb/" target="_blank" rel="noopener">
+                Liturgia Diária da Canção Nova</a>.
+            </p>
+          </div>
+
+          <!-- Conteúdo -->
+          <div id="liturgia-conteudo" hidden>
+            <div class="abas" role="tablist" aria-label="Partes da liturgia do dia">
+              <button type="button" class="abas__botao" role="tab" id="aba-primeiraLeitura"
+                      aria-controls="painel-primeiraLeitura" aria-selected="true">
+                1ª Leitura
+              </button>
+              <button type="button" class="abas__botao" role="tab" id="aba-salmo"
+                      aria-controls="painel-salmo" aria-selected="false" tabindex="-1">
+                Salmo
+              </button>
+              <button type="button" class="abas__botao" role="tab" id="aba-segundaLeitura"
+                      aria-controls="painel-segundaLeitura" aria-selected="false" tabindex="-1">
+                2ª Leitura
+              </button>
+              <button type="button" class="abas__botao" role="tab" id="aba-evangelho"
+                      aria-controls="painel-evangelho" aria-selected="false" tabindex="-1">
+                Evangelho
+              </button>
+            </div>
+
+            <div class="abas__painel" role="tabpanel" id="painel-primeiraLeitura"
+                 aria-labelledby="aba-primeiraLeitura" tabindex="0"></div>
+            <div class="abas__painel" role="tabpanel" id="painel-salmo"
+                 aria-labelledby="aba-salmo" tabindex="0" hidden></div>
+            <div class="abas__painel" role="tabpanel" id="painel-segundaLeitura"
+                 aria-labelledby="aba-segundaLeitura" tabindex="0" hidden></div>
+            <div class="abas__painel" role="tabpanel" id="painel-evangelho"
+                 aria-labelledby="aba-evangelho" tabindex="0" hidden></div>
+          </div>
+        </div>
+
+        <details class="oracoes-dia" id="liturgia-oracoes" hidden>
+          <summary>Orações e antífonas do dia</summary>
+          <div class="oracoes-dia__corpo" id="liturgia-oracoes-corpo"></div>
+        </details>
+
+        <p class="fonte-nota">
+          <strong>Fonte dos textos.</strong> As leituras são carregadas automaticamente, a cada
+          visita, da API pública
+          <a href="https://liturgia.up.railway.app/v2/" target="_blank" rel="noopener">liturgia.up.railway.app</a>,
+          que publica a liturgia diária em português do Brasil. Nada é armazenado neste site:
+          a cada acesso, os textos são buscados na origem para o dia corrente.
+          Para conferir ou comparar, consulte também a
+          <a href="https://liturgia.cancaonova.com/pb/" target="_blank" rel="noopener">Liturgia
+          Diária da Canção Nova</a>. Os textos litúrgicos e bíblicos pertencem aos seus
+          respectivos detentores de direitos.
+        </p>
+      </section>

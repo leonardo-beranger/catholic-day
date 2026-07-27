@@ -1,0 +1,98 @@
+---
+slug: all-day-vatican
+titulo: All Day Vatican
+menu: All Day Vatican
+secao: noticias
+ordem: 80
+scripts: noticias.js
+subtitulo: As principais notícias da Santa Sé e do mundo católico.
+descricao: Notícias do dia sobre o Vaticano e a Igreja Católica, reunidas do Vatican News, Canção Nova, G1, Folha de S.Paulo, Estadão, O Antagonista e Veja.
+---
+      <section class="secao">
+        <div class="noticias" id="noticias">
+
+          <!-- Estado: a carregar -->
+          <div class="liturgia__estado" id="noticias-carregando">
+            <span class="girador" aria-hidden="true"></span>
+            <p>A carregar as notícias de hoje…</p>
+          </div>
+
+          <!-- Estado: erro / vazio -->
+          <div class="liturgia__estado liturgia__estado--erro" id="noticias-erro" hidden>
+            <p id="noticias-erro-texto">Não foi possível carregar as notícias.</p>
+            <p class="liturgia__estado__alternativa">
+              Consulte diretamente o
+              <a href="https://www.vaticannews.va/pt.html" target="_blank" rel="noopener">Vatican
+              News</a> ou as
+              <a href="https://noticias.cancaonova.com/" target="_blank" rel="noopener">Notícias
+              da Canção Nova</a>.
+            </p>
+          </div>
+
+          <!-- Carrossel -->
+          <div id="noticias-carrossel" hidden>
+            <div class="carrossel" aria-roledescription="carrossel"
+                 aria-label="Principais notícias de hoje">
+
+              <a class="carrossel__cartao" id="noticia-link" href="#" target="_blank" rel="noopener">
+                <div class="carrossel__moldura">
+                  <img id="noticia-imagem" class="carrossel__imagem" alt="" decoding="async">
+                  <div class="carrossel__vinheta" aria-hidden="true"></div>
+                </div>
+                <div class="carrossel__texto">
+                  <p class="carrossel__meta">
+                    <span class="carrossel__fonte" id="noticia-fonte">—</span>
+                    <span class="carrossel__data" id="noticia-data"></span>
+                  </p>
+                  <h2 class="carrossel__titulo" id="noticia-titulo">—</h2>
+                  <p class="carrossel__resumo" id="noticia-resumo"></p>
+                  <span class="carrossel__acao">Ler a notícia completa</span>
+                </div>
+              </a>
+
+              <div class="carrossel__controles">
+                <button type="button" class="carrossel__botao" id="noticia-anterior"
+                        aria-label="Notícia anterior">‹</button>
+
+                <button type="button" class="carrossel__pausa" id="noticia-pausa"
+                        aria-label="Pausar rotação automática">
+                  <span id="noticia-pausa-icone">⏸</span>
+                </button>
+
+                <div class="carrossel__pontos" id="noticia-pontos" role="tablist"
+                     aria-label="Escolher notícia"></div>
+
+                <button type="button" class="carrossel__botao" id="noticia-proxima"
+                        aria-label="Próxima notícia">›</button>
+              </div>
+
+              <p class="carrossel__contador">
+                <span id="noticia-posicao">1</span> de <span id="noticia-total">1</span>
+              </p>
+            </div>
+
+            <!-- Lista completa do dia -->
+            <details class="oracoes-dia" id="noticias-lista-bloco">
+              <summary>Todas as notícias de hoje (<span id="noticias-lista-total">0</span>)</summary>
+              <div class="oracoes-dia__corpo">
+                <ul class="noticias-lista" id="noticias-lista"></ul>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <p class="fonte-nota">
+          <strong>Fontes.</strong> As notícias são reunidas dos feeds públicos de
+          <a href="https://www.vaticannews.va/pt.html" target="_blank" rel="noopener">Vatican News</a>,
+          <a href="https://noticias.cancaonova.com/" target="_blank" rel="noopener">Canção Nova</a>,
+          <a href="https://g1.globo.com/" target="_blank" rel="noopener">G1</a>,
+          <a href="https://www.folha.uol.com.br/" target="_blank" rel="noopener">Folha de S.Paulo</a>,
+          <a href="https://www.estadao.com.br/" target="_blank" rel="noopener">Estadão</a>,
+          <a href="https://oantagonista.com.br/" target="_blank" rel="noopener">O Antagonista</a> e
+          <a href="https://veja.abril.com.br/" target="_blank" rel="noopener">Veja</a>.
+          Nos jornais de interesse geral, entram apenas as notícias cujo assunto é a Igreja
+          Católica. Este site mostra apenas título, resumo e imagem, e o clique leva sempre à
+          página original: o texto integral e a imagem pertencem ao veículo de origem.
+          <span id="noticias-atualizacao"></span>
+        </p>
+      </section>

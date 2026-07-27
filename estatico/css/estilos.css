@@ -1,0 +1,1194 @@
+/* ==========================================================================
+   Lumen Fidei — folha de estilos base
+   Paleta inspirada nas cores litúrgicas: bordô, ouro velho e pergaminho.
+   ========================================================================== */
+
+:root {
+  --cor-fundo: #fdfaf4;
+  --cor-fundo-alt: #f6f0e4;
+  --cor-superficie: #ffffff;
+  --cor-borda: #e4dac4;
+  --cor-texto: #241f1c;
+  --cor-texto-suave: #5f574e;
+  --cor-primaria: #6d1f2b;      /* bordô — Paixão / mártires */
+  --cor-primaria-clara: #8f3140;
+  --cor-ouro: #a9852f;          /* ouro velho — solenidades */
+  --cor-verde: #3f6350;         /* tempo comum */
+  --cor-violeta: #5c4571;       /* advento / quaresma */
+
+  --fonte-titulo: "EB Garamond", Georgia, "Times New Roman", serif;
+  --fonte-texto: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --largura: 1120px;
+  --raio: 10px;
+  --sombra: 0 1px 2px rgba(36, 31, 28, .06), 0 8px 24px rgba(36, 31, 28, .06);
+  --transicao: 160ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-fundo: #17141a;
+    --cor-fundo-alt: #1e1a21;
+    --cor-superficie: #221d26;
+    --cor-borda: #372f3c;
+    --cor-texto: #f2ece4;
+    --cor-texto-suave: #b3a99f;
+    --cor-primaria: #f2555c;      /* vermelho — legível sobre fundo escuro */
+    --cor-primaria-clara: #ff7a80;
+    --cor-ouro: #d9b463;
+    --cor-verde: #7fae94;
+    --cor-violeta: #b39ccc;
+    --sombra: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .3);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* O atributo `hidden` precisa vencer qualquer `display` de componente:
+   sem isto, regras como `.liturgia__estado { display: flex }` mantêm o
+   elemento visível mesmo com hidden="true". */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 .5em;
+  letter-spacing: -.01em;
+}
+
+h1 { font-size: clamp(2rem, 4.5vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; }
+a { color: var(--cor-primaria); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--cor-primaria-clara); }
+
+img { max-width: 100%; height: auto; }
+
+.container {
+  width: 100%;
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.pular-para-conteudo {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  padding: .75rem 1rem;
+  background: var(--cor-primaria);
+  color: #fff;
+  border-radius: 0 0 var(--raio) 0;
+}
+.pular-para-conteudo:focus { left: 0; top: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--cor-ouro);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------- Cabeçalho / menu */
+
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--cor-fundo) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cabecalho__linha {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 68px;
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  text-decoration: none;
+  color: inherit;
+  margin-right: auto;
+}
+
+.marca__simbolo {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+.marca__texto { display: flex; flex-direction: column; line-height: 1.15; }
+.marca__texto strong { font-family: var(--fonte-titulo); font-size: 1.35rem; letter-spacing: .01em; }
+
+.menu-botao {
+  display: none;
+  width: 42px; height: 42px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  cursor: pointer;
+}
+.menu-botao__barras,
+.menu-botao__barras::before,
+.menu-botao__barras::after {
+  display: block;
+  width: 18px; height: 2px;
+  margin: 0 auto;
+  background: var(--cor-texto);
+  content: "";
+  transition: transform var(--transicao);
+}
+.menu-botao__barras::before { transform: translateY(-6px); }
+.menu-botao__barras::after { transform: translateY(4px); }
+
+.menu { display: flex; gap: 1.75rem; }
+.menu-grupo { position: relative; }
+
+.menu-grupo__titulo {
+  margin: 0 0 .15rem;
+  font-size: .68rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--cor-ouro);
+  font-weight: 600;
+}
+
+.menu ul {
+  display: flex;
+  gap: .9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu a {
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+  font-size: .88rem;
+  white-space: nowrap;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transicao), border-color var(--transicao);
+}
+.menu a:hover { color: var(--cor-texto); border-bottom-color: var(--cor-ouro); }
+.menu a[aria-current="page"] { color: var(--cor-primaria); border-bottom-color: var(--cor-primaria); font-weight: 500; }
+
+@media (max-width: 1060px) {
+  .menu-botao { display: block; }
+  .menu {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: var(--cor-fundo);
+    border-bottom: 1px solid var(--cor-borda);
+    box-shadow: var(--sombra);
+    display: none;
+  }
+  .menu.aberto { display: flex; }
+  .menu ul { flex-direction: column; gap: .5rem; }
+  .menu a { font-size: 1rem; }
+  .menu--rodape { position: static; display: flex; flex-direction: row; flex-wrap: wrap; gap: 2rem; box-shadow: none; border: 0; padding: 0; background: none; }
+}
+
+/* ------------------------------------------------------- Cabeçalho da página */
+
+.pagina-cabecalho {
+  padding: 3.5rem 0 2rem;
+  max-width: 46rem;
+}
+.pagina-cabecalho h1 { color: var(--cor-primaria); }
+.pagina-cabecalho__subtitulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--cor-texto-suave);
+  margin: 0;
+}
+
+/* ---------------------------------------------------- Vida de Cristo — hero */
+
+.vida-hero {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2.5rem 0 3rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.vida-hero__imagem {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  /* profundidade para o transform 3D do JS (tilt.js) funcionar de verdade,
+     em vez de so achatar a imagem. */
+  perspective: 1000px;
+}
+/* "Portal" atras da figura: um brilho menor que a imagem, para que a
+   figura pareca atravessar/sair dele — e nao apenas flutuar na frente. */
+.vida-hero__imagem::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  width: 68%;
+  height: 78%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--cor-ouro) 35%, transparent) 0%,
+    color-mix(in srgb, var(--cor-primaria) 22%, transparent) 45%,
+    transparent 72%
+  );
+  filter: blur(18px);
+  z-index: 0;
+}
+.vida-hero__imagem img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  transform-style: preserve-3d;
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
+  /* sombra dupla: contato (curta e escura) + ambiente (longa e suave) —
+     dá a sensação de profundidade/3D em vez de recorte colado na página. */
+  filter:
+    drop-shadow(0 10px 12px rgba(0, 0, 0, .4))
+    drop-shadow(0 26px 40px rgba(0, 0, 0, .32));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vida-hero__imagem img { transition: none; }
+}
+
+.vida-hero__texto h2 { margin-top: 0; color: var(--cor-primaria); }
+.vida-hero__texto .citacao { margin-bottom: 0; }
+
+@media (max-width: 780px) {
+  .vida-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 1.75rem 0 2.25rem;
+  }
+  .vida-hero__imagem img { max-width: 220px; }
+  .vida-hero__texto .citacao { text-align: left; }
+}
+
+/* -------------------------------------------------------------------- Home */
+
+.hero {
+  display: grid;
+  gap: 2rem;
+  padding: 3rem 0 1rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.hero__citacao {
+  margin: 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--cor-ouro);
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+  font-style: italic;
+}
+.hero__citacao footer { font-family: var(--fonte-texto); font-size: .85rem; font-style: normal; color: var(--cor-texto-suave); margin-top: .5rem; }
+
+/* ------------------------------------------------------------------- Blocos */
+
+.secao { padding: 3rem 0; border-top: 1px solid var(--cor-borda); }
+.secao:first-of-type { border-top: 0; }
+.secao__intro { max-width: 44rem; color: var(--cor-texto-suave); }
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.cartao {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: 1.5rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transicao), border-color var(--transicao);
+}
+a.cartao:hover { transform: translateY(-2px); border-color: var(--cor-ouro); }
+.cartao h3 { margin: 0; color: var(--cor-primaria); }
+.cartao p { margin: 0; font-size: .92rem; color: var(--cor-texto-suave); }
+.cartao__etiqueta {
+  align-self: flex-start;
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cor-ouro);
+  font-weight: 600;
+}
+
+.painel {
+  padding: 1.75rem;
+  background: var(--cor-fundo-alt);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+/* Ficha de conteúdo (profecia, conceito, termo de glossário). */
+.ficha {
+  margin-top: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-left: 3px solid var(--cor-ouro);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+.ficha--longa { border-left-color: var(--cor-primaria); }
+.ficha--termo { margin-top: 0; padding: 1.25rem 1.5rem; box-shadow: none; }
+
+.ficha__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+.ficha__cabecalho h3 { margin: 0; color: var(--cor-primaria); }
+.ficha__ref {
+  margin-left: auto;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--cor-ouro);
+  white-space: nowrap;
+}
+.ficha__ref a { color: inherit; }
+
+.ficha h4 {
+  margin: 1.5rem 0 .5rem;
+  font-size: 1.02rem;
+  color: var(--cor-verde);
+}
+.ficha p:last-child { margin-bottom: 0; }
+
+.ficha__refs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  font-size: .84rem;
+  color: var(--cor-texto-suave);
+}
+
+.ficha__nota {
+  margin-top: 1rem;
+  padding-top: .85rem;
+  border-top: 1px solid var(--cor-borda);
+  font-size: .88rem;
+  color: var(--cor-texto-suave);
+}
+
+/* Objeção / ponto de debate dentro de uma ficha. */
+.ficha__objecao {
+  margin-top: 1rem;
+  padding: .9rem 1.15rem;
+  background: var(--cor-fundo-alt);
+  border-left: 3px solid var(--cor-violeta);
+  border-radius: 0 var(--raio) var(--raio) 0;
+}
+.ficha__objecao p { margin: 0; font-size: .9rem; }
+
+/* Citação bíblica ou magisterial. */
+.citacao {
+  margin: 1.25rem 0;
+  padding: .25rem 0 .25rem 1.25rem;
+  border-left: 3px solid var(--cor-ouro);
+  font-family: var(--fonte-titulo);
+  font-size: 1.08rem;
+  font-style: italic;
+}
+.citacao--latim {
+  border-left-color: var(--cor-violeta);
+  margin-bottom: 0.5rem;
+}
+.citacao--latim + .citacao { border-left-color: var(--cor-ouro); }
+.citacao footer {
+  margin-top: .4rem;
+  font-family: var(--fonte-texto);
+  font-size: .8rem;
+  font-style: normal;
+  color: var(--cor-texto-suave);
+}
+
+/* Marcador de conteúdo ainda não escrito. */
+.placeholder {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--cor-fundo-alt);
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto-suave);
+  font-size: .92rem;
+}
+.placeholder::before { content: "✎"; color: var(--cor-ouro); font-size: 1.1rem; line-height: 1.4; }
+.placeholder p { margin: 0; }
+
+.lista-simples { margin: 1rem 0 0; padding-left: 1.15rem; }
+.lista-simples li { margin-bottom: .4rem; }
+
+/* Linha do tempo (Vida de Cristo, Patrística). */
+.linha-tempo { list-style: none; margin: 2rem 0 0; padding: 0 0 0 1.5rem; border-left: 2px solid var(--cor-borda); }
+.linha-tempo > li { position: relative; padding: 0 0 1.75rem 1.25rem; }
+.linha-tempo > li::before {
+  content: "";
+  position: absolute;
+  left: -1.55rem; top: .45rem;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--cor-ouro);
+}
+.linha-tempo h3 { margin: 0 0 .2rem; font-size: 1.1rem; }
+.linha-tempo p { margin: 0; font-size: .92rem; color: var(--cor-texto-suave); }
+.linha-tempo__periodo { font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; color: var(--cor-ouro); font-weight: 600; }
+
+/* Tabelas (profecias, calendário). */
+.tabela-rolagem { overflow-x: auto; margin-top: 1.75rem; }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; min-width: 620px; }
+th, td { padding: .8rem 1rem; text-align: left; border-bottom: 1px solid var(--cor-borda); vertical-align: top; }
+th { font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; color: var(--cor-texto-suave); }
+tbody tr:hover { background: var(--cor-fundo-alt); }
+
+/* Selos de cor litúrgica. */
+.selo {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 500;
+  border: 1px solid var(--cor-borda);
+}
+.selo::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.selo--verde { color: var(--cor-verde); }
+.selo--violeta { color: var(--cor-violeta); }
+.selo--branco { color: var(--cor-ouro); }
+.selo--vermelho { color: var(--cor-primaria); }
+
+/* ------------------------------------------------------------ Liturgia Diária */
+
+.liturgia {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+
+.liturgia__cabecalho {
+  padding: 1.5rem 1.75rem 1.25rem;
+  background: var(--cor-fundo-alt);
+  border-bottom: 1px solid var(--cor-borda);
+}
+.liturgia__cabecalho h2 { margin: .2rem 0 .5rem; color: var(--cor-primaria); }
+.liturgia__celebracao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  margin: 0;
+}
+.liturgia__titulo-celebracao { font-weight: 500; }
+
+/* Estados de carregamento e erro. */
+.liturgia__estado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  padding: 3rem 1.75rem;
+  text-align: center;
+  color: var(--cor-texto-suave);
+}
+.liturgia__estado p { margin: 0; }
+.liturgia__estado--erro { color: var(--cor-primaria); }
+.liturgia__estado__alternativa { font-size: .86rem; color: var(--cor-texto-suave); }
+
+.girador {
+  width: 26px; height: 26px;
+  border: 2px solid var(--cor-borda);
+  border-top-color: var(--cor-ouro);
+  border-radius: 50%;
+  animation: girar .8s linear infinite;
+}
+@keyframes girar { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .girador { animation-duration: 2.4s; }
+}
+
+.botao-acao {
+  padding: .45rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--cor-primaria);
+  background: transparent;
+  color: var(--cor-primaria);
+  font-family: var(--fonte-texto);
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.botao-acao:hover { background: var(--cor-primaria); color: #fff; }
+
+/* Abas das leituras. */
+.abas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  padding: .85rem 1.75rem 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.abas__botao {
+  padding: .55rem 1.1rem;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--raio) var(--raio) 0 0;
+  background: transparent;
+  color: var(--cor-texto-suave);
+  font-family: var(--fonte-texto);
+  font-size: .88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--transicao), background var(--transicao);
+}
+.abas__botao:hover { color: var(--cor-texto); background: var(--cor-fundo-alt); }
+.abas__botao[aria-selected="true"] {
+  color: var(--cor-primaria);
+  background: var(--cor-superficie);
+  border-color: var(--cor-borda);
+  font-weight: 600;
+  margin-bottom: -1px;
+  padding-bottom: calc(.55rem + 1px);
+}
+
+.abas__painel { padding: 1.75rem; }
+
+.leitura__topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .75rem;
+  margin-bottom: 1rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.leitura__topo h3 { margin: 0; font-size: 1.1rem; color: var(--cor-verde); }
+.leitura__ref {
+  margin-left: auto;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--cor-ouro);
+  white-space: nowrap;
+}
+
+.leitura__refrao {
+  padding: .75rem 1.1rem;
+  background: var(--cor-fundo-alt);
+  border-left: 3px solid var(--cor-ouro);
+  border-radius: 0 var(--raio) var(--raio) 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+.leitura__texto { font-size: 1.02rem; line-height: 1.75; max-width: 42rem; }
+.leitura__texto p { margin-bottom: .9rem; }
+.versiculo {
+  margin-right: .15rem;
+  font-size: .68em;
+  font-weight: 600;
+  color: var(--cor-ouro);
+}
+
+/* Orações do dia (bloco recolhível). */
+.oracoes-dia {
+  margin-top: 1.25rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  overflow: hidden;
+}
+.oracoes-dia > summary {
+  padding: .85rem 1.25rem;
+  cursor: pointer;
+  font-family: var(--fonte-titulo);
+  font-size: 1.02rem;
+  font-weight: 600;
+  list-style: none;
+}
+.oracoes-dia > summary::-webkit-details-marker { display: none; }
+.oracoes-dia > summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: .6rem;
+  color: var(--cor-ouro);
+  transition: transform var(--transicao);
+}
+.oracoes-dia[open] > summary::before { transform: rotate(90deg); }
+.oracoes-dia__corpo { padding: 0 1.25rem 1.25rem; }
+.oracao + .oracao { margin-top: 1.25rem; }
+.oracao h4 {
+  margin: 0 0 .3rem;
+  font-size: .74rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--cor-ouro);
+  font-family: var(--fonte-texto);
+}
+.oracao p { margin: 0; font-size: .94rem; }
+
+/* Nota de atribuição de fonte externa. */
+.fonte-nota {
+  margin-top: 1.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--cor-fundo-alt);
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio);
+  font-size: .84rem;
+  color: var(--cor-texto-suave);
+}
+
+@media (max-width: 640px) {
+  .abas { padding: .75rem .75rem 0; gap: .2rem; }
+  .abas__botao { padding: .5rem .7rem; font-size: .8rem; }
+  .abas__painel, .liturgia__cabecalho { padding: 1.25rem; }
+}
+
+/* --------------------------------------------------------------- Santo do Dia */
+
+.santo__ficha {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+
+.santo__moldura {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(140deg,
+    color-mix(in srgb, var(--cor-primaria) 30%, var(--cor-fundo-alt)),
+    var(--cor-fundo-alt));
+  overflow: hidden;
+}
+.santo__moldura::before {
+  content: "✝";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 4rem;
+  color: color-mix(in srgb, var(--cor-ouro) 45%, transparent);
+  z-index: 0;
+}
+.santo__imagem {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  z-index: 1;
+}
+.santo__vinheta {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0, 0, 0, .55), transparent 60%);
+}
+.santo__nome {
+  position: relative;
+  z-index: 3;
+  margin: 0;
+  padding: 1.75rem 2rem;
+  color: #fff;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .6);
+}
+
+.santo__corpo { padding: 1.75rem 2rem 2rem; }
+.santo__biografia h3 {
+  margin: 1.5rem 0 .5rem;
+  font-size: 1.05rem;
+  color: var(--cor-verde);
+}
+.santo__biografia h3:first-child { margin-top: 1rem; }
+.santo__biografia p { font-size: .98rem; line-height: 1.7; }
+
+.santo__oracao {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--cor-fundo-alt);
+  border-left: 3px solid var(--cor-ouro);
+  border-radius: 0 var(--raio) var(--raio) 0;
+}
+.santo__oracao h2 {
+  margin: 0 0 .6rem;
+  font-size: 1rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--cor-ouro);
+}
+.santo__oracao p {
+  font-family: var(--fonte-titulo);
+  font-size: 1.08rem;
+  font-style: italic;
+  margin-bottom: .6rem;
+}
+.santo__oracao p:last-child { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .santo__moldura { min-height: 220px; }
+  .santo__nome { padding: 1.25rem 1.25rem; }
+  .santo__corpo { padding: 1.25rem 1.25rem 1.5rem; }
+}
+
+/* ------------------------------------------------- All Day Vatican (notícias) */
+
+.carrossel {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+
+.carrossel__cartao {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  text-decoration: none;
+  color: inherit;
+}
+.carrossel__cartao:hover .carrossel__titulo { color: var(--cor-primaria-clara); }
+.carrossel__cartao:hover .carrossel__imagem { transform: scale(1.03); }
+.carrossel__cartao:hover .carrossel__acao::after { transform: translateX(3px); }
+
+.carrossel__cartao--entrando { animation: entrar .45s ease both; }
+@keyframes entrar { from { opacity: .35; } to { opacity: 1; } }
+
+.carrossel__moldura {
+  position: relative;
+  min-height: 300px;
+  background: linear-gradient(140deg,
+    color-mix(in srgb, var(--cor-primaria) 30%, var(--cor-fundo-alt)),
+    var(--cor-fundo-alt));
+  overflow: hidden;
+}
+.carrossel__imagem {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+/* Sem imagem, o gradiente da moldura fica visível com a cruz ao centro. */
+.carrossel__moldura::after {
+  content: "✝";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 3.5rem;
+  color: color-mix(in srgb, var(--cor-ouro) 45%, transparent);
+  z-index: 0;
+}
+.carrossel__imagem:not([hidden]) { z-index: 1; }
+.carrossel__vinheta {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to right, transparent 55%, rgba(0, 0, 0, .12));
+}
+
+.carrossel__texto {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  padding: 1.85rem 2rem;
+}
+.carrossel__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem;
+  margin: 0;
+}
+.carrossel__fonte {
+  padding: .15rem .65rem;
+  border-radius: 999px;
+  background: var(--cor-primaria);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.carrossel__data { font-size: .76rem; color: var(--cor-texto-suave); }
+
+.carrossel__titulo {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+  line-height: 1.25;
+  color: var(--cor-primaria);
+  transition: color var(--transicao);
+}
+.carrossel__resumo {
+  margin: 0;
+  font-size: .92rem;
+  color: var(--cor-texto-suave);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.carrossel__acao {
+  margin-top: auto;
+  padding-top: .5rem;
+  font-size: .84rem;
+  font-weight: 600;
+  color: var(--cor-ouro);
+}
+.carrossel__acao::after {
+  content: "→";
+  display: inline-block;
+  margin-left: .35rem;
+  transition: transform var(--transicao);
+}
+
+.carrossel__controles {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .75rem 1.25rem;
+  background: var(--cor-fundo-alt);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.carrossel__botao, .carrossel__pausa {
+  display: grid;
+  place-items: center;
+  width: 34px; height: 34px;
+  flex: 0 0 auto;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color var(--transicao), color var(--transicao);
+}
+.carrossel__pausa { font-size: .8rem; }
+.carrossel__botao:hover, .carrossel__pausa:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+
+.carrossel__pontos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 0 auto;
+}
+.carrossel__ponto {
+  width: 9px; height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--cor-borda);
+  cursor: pointer;
+  transition: background var(--transicao), transform var(--transicao);
+}
+.carrossel__ponto:hover { background: var(--cor-texto-suave); }
+.carrossel__ponto[aria-selected="true"] {
+  background: var(--cor-primaria);
+  transform: scale(1.35);
+}
+
+.carrossel__contador {
+  margin: 0;
+  padding: .6rem 1.25rem;
+  border-top: 1px solid var(--cor-borda);
+  font-size: .76rem;
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+/* Lista completa do dia. */
+.noticias-lista { margin: 0; padding: 0; list-style: none; }
+.noticias-lista li {
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.noticias-lista li:last-child { border-bottom: none; }
+.noticias-lista a { font-size: .94rem; }
+.noticias-lista__meta {
+  display: block;
+  margin-top: .2rem;
+  font-size: .74rem;
+  color: var(--cor-texto-suave);
+}
+
+.aviso-desatualizado { color: var(--cor-primaria); font-weight: 600; }
+
+@media (max-width: 780px) {
+  .carrossel__cartao { grid-template-columns: 1fr; }
+  .carrossel__moldura { min-height: 200px; }
+  .carrossel__texto { padding: 1.35rem 1.25rem; }
+  .carrossel__controles { padding: .7rem .9rem; gap: .5rem; }
+}
+
+/* --------------------------------------------------------- Catecismo (CIC) */
+
+.cic-parte { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--cor-primaria); }
+.cic-parte:first-of-type { margin-top: 1rem; }
+.cic-parte h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 1rem;
+  color: var(--cor-primaria);
+}
+.cic-parte h2 .cic-link-pdf--parte { margin-left: auto; }
+
+.cic-seccao, .cic-capitulo {
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  margin: 0.9rem 0;
+  overflow: hidden;
+}
+.cic-seccao { background: transparent; border-style: dashed; }
+
+.cic-seccao > summary, .cic-capitulo > summary {
+  cursor: pointer;
+  padding: .85rem 1.1rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.cic-pagina-tag { margin-left: auto; }
+.cic-seccao > summary { font-size: 1.15rem; color: var(--cor-verde); }
+.cic-capitulo > summary { font-size: 1.02rem; }
+.cic-seccao > summary::-webkit-details-marker,
+.cic-capitulo > summary::-webkit-details-marker { display: none; }
+.cic-seccao > summary::before,
+.cic-capitulo > summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: .6rem;
+  transition: transform var(--transicao);
+  color: var(--cor-ouro);
+}
+.cic-seccao[open] > summary::before,
+.cic-capitulo[open] > summary::before { transform: rotate(90deg); }
+
+.cic-pagina-tag {
+  font-size: .72rem;
+  font-family: var(--fonte-texto);
+  font-weight: 500;
+  color: var(--cor-texto-suave);
+  white-space: nowrap;
+}
+
+.cic-seccao__corpo { padding: 0 1rem 1rem; }
+.cic-capitulo__corpo { padding: 0 1.1rem 1rem; display: flex; flex-direction: column; gap: 1rem; }
+
+.cic-folha {
+  padding: 1.1rem 1.25rem;
+  background: var(--cor-fundo-alt);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+.cic-folha__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: .5rem;
+  margin-bottom: .5rem;
+}
+.cic-folha__cabecalho h4 { margin: 0; font-size: 1.02rem; color: var(--cor-primaria); }
+.cic-faixa {
+  margin-left: auto;
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--cor-ouro);
+  white-space: nowrap;
+}
+.cic-folha p { font-size: .94rem; }
+
+.cic-refs { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; font-size: .82rem; }
+.selo-biblia {
+  display: inline-block;
+  padding: .1rem .5rem;
+  border-radius: 999px;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  font-size: .78rem;
+  color: var(--cor-texto-suave);
+}
+
+.cic-link-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  margin-top: .6rem;
+  padding: 0;
+  font-family: var(--fonte-texto);
+  font-size: .82rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: var(--cor-primaria);
+  cursor: pointer;
+}
+.cic-link-pdf::after { content: "→"; }
+.cic-link-pdf:hover { color: var(--cor-primaria-clara); }
+.cic-link-pdf--parte {
+  margin-top: 0;
+  font-size: .8rem;
+  padding: .3rem .8rem;
+  border: 1px solid var(--cor-primaria);
+  border-radius: 999px;
+}
+
+/* ----------------------------------------------------- Leitor de PDF embutido */
+
+.leitor-cic {
+  position: sticky;
+  top: 76px;
+  z-index: 15;
+  margin: 1.5rem 0;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+.leitor-cic[hidden] { display: none; }
+
+.leitor-cic__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .6rem 1rem;
+  background: var(--cor-fundo-alt);
+  border-bottom: 1px solid var(--cor-borda);
+}
+.leitor-cic__titulo { font-size: .86rem; font-weight: 600; }
+.leitor-cic__acoes { display: flex; align-items: center; gap: .6rem; }
+
+.botao-baixar {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .35rem .9rem;
+  border-radius: 999px;
+  background: var(--cor-primaria);
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.botao-baixar::before { content: "⬇"; }
+.botao-baixar:hover { background: var(--cor-primaria-clara); color: #fff; }
+
+.botao-fechar {
+  width: 28px; height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  cursor: pointer;
+  font-size: .85rem;
+  line-height: 1;
+}
+.botao-fechar:hover { border-color: var(--cor-primaria); color: var(--cor-primaria); }
+
+.leitor-cic__quadro {
+  display: block;
+  width: 100%;
+  height: 75vh;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .leitor-cic { position: static; }
+  .leitor-cic__quadro { height: 60vh; }
+  .leitor-cic__titulo { font-size: .78rem; }
+}
+
+/* --------------------------------------------------------------- Rodapé */
+
+.rodape {
+  margin-top: 4rem;
+  padding: 3rem 0 2.5rem;
+  background: var(--cor-fundo-alt);
+  border-top: 1px solid var(--cor-borda);
+}
+.rodape .menu { gap: 2.5rem; flex-wrap: wrap; }
+.rodape__nota {
+  margin: 2.5rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cor-borda);
+  font-size: .84rem;
+  color: var(--cor-texto-suave);
+}

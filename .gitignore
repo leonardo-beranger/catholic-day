@@ -1,0 +1,9 @@
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# HTML bruto baixado de vatican.va (materia-prima de preparacao, nao
+# publicada — os PDFs gerados a partir dele e' que importam).
+documentos/concilios/_bruto/

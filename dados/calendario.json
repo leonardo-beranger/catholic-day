@@ -1,0 +1,17 @@
+{
+  "_comentario": "Esqueleto do calendario liturgico. Festas fixas por MM-DD; as moveis derivam da data da Pascoa.",
+  "tempos": [
+    { "id": "advento", "nome": "Advento", "cor": "violeta" },
+    { "id": "natal", "nome": "Tempo do Natal", "cor": "branco" },
+    { "id": "quaresma", "nome": "Quaresma", "cor": "violeta" },
+    { "id": "triduo", "nome": "Triduo Pascal", "cor": "vermelho/branco" },
+    { "id": "pascoa", "nome": "Tempo Pascal", "cor": "branco" },
+    { "id": "comum", "nome": "Tempo Comum", "cor": "verde" }
+  ],
+  "festas_fixas": {
+    "exemplo": { "dia": "00-00", "nome": "", "grau": "", "cor": "", "preceito": false }
+  },
+  "festas_moveis": {
+    "exemplo": { "nome": "", "offset_pascoa_dias": 0, "grau": "", "cor": "" }
+  }
+}

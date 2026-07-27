@@ -1,0 +1,594 @@
+{
+  "documentos": [
+    {
+      "slug": "sacrosanctum-concilium",
+      "tipo": "Constituição",
+      "titulo": "Sacrosanctum Concilium — Sobre a Sagrada Liturgia",
+      "data": "1963-12-04",
+      "arquivo_pdf": "sacrosanctum-concilium.pdf",
+      "total_paginas": 11,
+      "paragrafo_final": 69,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 4,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 5,
+          "paragrafo_final": 46,
+          "pagina_pdf": 2
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 47,
+          "paragrafo_final": 58,
+          "pagina_pdf": 8
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 59,
+          "paragrafo_final": 69,
+          "pagina_pdf": 10
+        }
+      ]
+    },
+    {
+      "slug": "inter-mirifica",
+      "tipo": "Decreto",
+      "titulo": "Inter Mirifica — Sobre os Meios de Comunicação Social",
+      "data": "1963-12-04",
+      "arquivo_pdf": "inter-mirifica.pdf",
+      "total_paginas": 5,
+      "paragrafo_final": 24,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 2,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 3,
+          "paragrafo_final": 12,
+          "pagina_pdf": 2
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 13,
+          "paragrafo_final": 24,
+          "pagina_pdf": 4
+        }
+      ]
+    },
+    {
+      "slug": "lumen-gentium",
+      "tipo": "Constituição",
+      "titulo": "Lumen Gentium — Sobre a Igreja",
+      "data": "1964-11-21",
+      "arquivo_pdf": "lumen-gentium.pdf",
+      "total_paginas": 25,
+      "paragrafo_final": 78,
+      "capitulos": [
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 8,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 9,
+          "paragrafo_final": 17,
+          "pagina_pdf": 4
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 18,
+          "paragrafo_final": 29,
+          "pagina_pdf": 8
+        },
+        {
+          "titulo": "Capítulo IV",
+          "paragrafo_inicial": 30,
+          "paragrafo_final": 38,
+          "pagina_pdf": 12
+        },
+        {
+          "titulo": "Capítulo V",
+          "paragrafo_inicial": 39,
+          "paragrafo_final": 42,
+          "pagina_pdf": 15
+        },
+        {
+          "titulo": "Capítulo VI",
+          "paragrafo_inicial": 43,
+          "paragrafo_final": 47,
+          "pagina_pdf": 17
+        },
+        {
+          "titulo": "Capítulo VII",
+          "paragrafo_inicial": 48,
+          "paragrafo_final": 51,
+          "pagina_pdf": 18
+        },
+        {
+          "titulo": "Capítulo VIII",
+          "paragrafo_inicial": 52,
+          "paragrafo_final": 78,
+          "pagina_pdf": 20
+        }
+      ]
+    },
+    {
+      "slug": "orientalium-ecclesiarum",
+      "tipo": "Decreto",
+      "titulo": "Orientalium Ecclesiarum — Sobre as Igrejas Orientais Católicas",
+      "data": "1964-11-21",
+      "arquivo_pdf": "orientalium-ecclesiarum.pdf",
+      "total_paginas": 7,
+      "paragrafo_final": 35,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 29,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Conclusão",
+          "paragrafo_inicial": 30,
+          "paragrafo_final": 35,
+          "pagina_pdf": 7
+        }
+      ]
+    },
+    {
+      "slug": "unitatis-redintegratio",
+      "tipo": "Decreto",
+      "titulo": "Unitatis Redintegratio — Sobre o Ecumenismo",
+      "data": "1964-11-21",
+      "arquivo_pdf": "unitatis-redintegratio.pdf",
+      "total_paginas": 7,
+      "paragrafo_final": 28,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 1,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 2,
+          "paragrafo_final": 4,
+          "pagina_pdf": 2
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 5,
+          "paragrafo_final": 12,
+          "pagina_pdf": 3
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 13,
+          "paragrafo_final": 28,
+          "pagina_pdf": 5
+        }
+      ]
+    },
+    {
+      "slug": "christus-dominus",
+      "tipo": "Decreto",
+      "titulo": "Christus Dominus — Sobre o Múnus Pastoral dos Bispos",
+      "data": "1965-10-28",
+      "arquivo_pdf": "christus-dominus.pdf",
+      "total_paginas": 8,
+      "paragrafo_final": 44,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 44,
+          "pagina_pdf": 1
+        }
+      ]
+    },
+    {
+      "slug": "perfectae-caritatis",
+      "tipo": "Decreto",
+      "titulo": "Perfectae Caritatis — Sobre a Renovação da Vida Religiosa",
+      "data": "1965-10-28",
+      "arquivo_pdf": "perfectae-caritatis.pdf",
+      "total_paginas": 5,
+      "paragrafo_final": 25,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 25,
+          "pagina_pdf": 1
+        }
+      ]
+    },
+    {
+      "slug": "optatam-totius",
+      "tipo": "Decreto",
+      "titulo": "Optatam Totius — Sobre a Formação Sacerdotal",
+      "data": "1965-10-28",
+      "arquivo_pdf": "optatam-totius.pdf",
+      "total_paginas": 7,
+      "paragrafo_final": 48,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 22,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Conclusão",
+          "paragrafo_inicial": 23,
+          "paragrafo_final": 48,
+          "pagina_pdf": 6
+        }
+      ]
+    },
+    {
+      "slug": "gravissimum-educationis",
+      "tipo": "Declaração",
+      "titulo": "Gravissimum Educationis — Sobre a Educação Cristã",
+      "data": "1965-10-28",
+      "arquivo_pdf": "gravissimum-educationis.pdf",
+      "total_paginas": 5,
+      "paragrafo_final": 36,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 12,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Conclusão",
+          "paragrafo_inicial": 13,
+          "paragrafo_final": 36,
+          "pagina_pdf": 4
+        }
+      ]
+    },
+    {
+      "slug": "nostra-aetate",
+      "tipo": "Declaração",
+      "titulo": "Nostra Aetate — Sobre as Religiões Não-Cristãs",
+      "data": "1965-10-28",
+      "arquivo_pdf": "nostra-aetate.pdf",
+      "total_paginas": 2,
+      "paragrafo_final": 15,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 15,
+          "pagina_pdf": 1
+        }
+      ]
+    },
+    {
+      "slug": "dei-verbum",
+      "tipo": "Constituição",
+      "titulo": "Dei Verbum — Sobre a Divina Revelação",
+      "data": "1965-11-18",
+      "arquivo_pdf": "dei-verbum.pdf",
+      "total_paginas": 10,
+      "paragrafo_final": 26,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 1,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 2,
+          "paragrafo_final": 6,
+          "pagina_pdf": 2
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 7,
+          "paragrafo_final": 10,
+          "pagina_pdf": 4
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 11,
+          "paragrafo_final": 13,
+          "pagina_pdf": 5
+        },
+        {
+          "titulo": "Capítulo IV",
+          "paragrafo_inicial": 14,
+          "paragrafo_final": 16,
+          "pagina_pdf": 6
+        },
+        {
+          "titulo": "Capítulo V",
+          "paragrafo_inicial": 17,
+          "paragrafo_final": 20,
+          "pagina_pdf": 7
+        },
+        {
+          "titulo": "Capítulo VI",
+          "paragrafo_inicial": 21,
+          "paragrafo_final": 26,
+          "pagina_pdf": 9
+        }
+      ]
+    },
+    {
+      "slug": "apostolicam-actuositatem",
+      "tipo": "Decreto",
+      "titulo": "Apostolicam Actuositatem — Sobre o Apostolado dos Leigos",
+      "data": "1965-11-18",
+      "arquivo_pdf": "apostolicam-actuositatem.pdf",
+      "total_paginas": 9,
+      "paragrafo_final": 33,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 1,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 2,
+          "paragrafo_final": 4,
+          "pagina_pdf": 2
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 5,
+          "paragrafo_final": 8,
+          "pagina_pdf": 3
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 9,
+          "paragrafo_final": 14,
+          "pagina_pdf": 4
+        },
+        {
+          "titulo": "Capítulo IV",
+          "paragrafo_inicial": 15,
+          "paragrafo_final": 22,
+          "pagina_pdf": 6
+        },
+        {
+          "titulo": "Capítulo V",
+          "paragrafo_inicial": 23,
+          "paragrafo_final": 27,
+          "pagina_pdf": 8
+        },
+        {
+          "titulo": "Capítulo VI",
+          "paragrafo_inicial": 28,
+          "paragrafo_final": 33,
+          "pagina_pdf": 9
+        }
+      ]
+    },
+    {
+      "slug": "dignitatis-humanae",
+      "tipo": "Declaração",
+      "titulo": "Dignitatis Humanae — Sobre a Liberdade Religiosa",
+      "data": "1965-12-07",
+      "arquivo_pdf": "dignitatis-humanae.pdf",
+      "total_paginas": 5,
+      "paragrafo_final": 39,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 39,
+          "pagina_pdf": 1
+        }
+      ]
+    },
+    {
+      "slug": "ad-gentes",
+      "tipo": "Decreto",
+      "titulo": "Ad Gentes — Sobre a Atividade Missionária da Igreja",
+      "data": "1965-12-07",
+      "arquivo_pdf": "ad-gentes.pdf",
+      "total_paginas": 15,
+      "paragrafo_final": 55,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 1,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 2,
+          "paragrafo_final": 9,
+          "pagina_pdf": 2
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 10,
+          "paragrafo_final": 18,
+          "pagina_pdf": 5
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 19,
+          "paragrafo_final": 22,
+          "pagina_pdf": 7
+        },
+        {
+          "titulo": "Capítulo IV",
+          "paragrafo_inicial": 23,
+          "paragrafo_final": 27,
+          "pagina_pdf": 8
+        },
+        {
+          "titulo": "Capítulo V",
+          "paragrafo_inicial": 28,
+          "paragrafo_final": 34,
+          "pagina_pdf": 10
+        },
+        {
+          "titulo": "Capítulo VI",
+          "paragrafo_inicial": 35,
+          "paragrafo_final": 41,
+          "pagina_pdf": 12
+        },
+        {
+          "titulo": "Conclusão",
+          "paragrafo_inicial": 42,
+          "paragrafo_final": 55,
+          "pagina_pdf": 14
+        }
+      ]
+    },
+    {
+      "slug": "presbyterorum-ordinis",
+      "tipo": "Decreto",
+      "titulo": "Presbyterorum Ordinis — Sobre o Ministério e Vida dos Presbíteros",
+      "data": "1965-12-07",
+      "arquivo_pdf": "presbyterorum-ordinis.pdf",
+      "total_paginas": 13,
+      "paragrafo_final": 69,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 1,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 2,
+          "paragrafo_final": 3,
+          "pagina_pdf": 2
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 4,
+          "paragrafo_final": 11,
+          "pagina_pdf": 3
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 12,
+          "paragrafo_final": 69,
+          "pagina_pdf": 7
+        }
+      ]
+    },
+    {
+      "slug": "gaudium-et-spes",
+      "tipo": "Constituição",
+      "titulo": "Gaudium et Spes — Sobre a Igreja no Mundo Atual",
+      "data": "1965-12-07",
+      "arquivo_pdf": "gaudium-et-spes.pdf",
+      "total_paginas": 28,
+      "paragrafo_final": 93,
+      "capitulos": [
+        {
+          "titulo": "Proémio",
+          "paragrafo_inicial": 1,
+          "paragrafo_final": 3,
+          "pagina_pdf": 1
+        },
+        {
+          "titulo": "Introdução",
+          "paragrafo_inicial": 4,
+          "paragrafo_final": 10,
+          "pagina_pdf": 2
+        },
+        {
+          "titulo": "Parte I",
+          "paragrafo_inicial": 11,
+          "paragrafo_final": 11,
+          "pagina_pdf": 4
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 12,
+          "paragrafo_final": 22,
+          "pagina_pdf": 5
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 23,
+          "paragrafo_final": 32,
+          "pagina_pdf": 8
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 33,
+          "paragrafo_final": 39,
+          "pagina_pdf": 10
+        },
+        {
+          "titulo": "Capítulo IV",
+          "paragrafo_inicial": 40,
+          "paragrafo_final": 45,
+          "pagina_pdf": 13
+        },
+        {
+          "titulo": "Parte II",
+          "paragrafo_inicial": 46,
+          "paragrafo_final": 46,
+          "pagina_pdf": 15
+        },
+        {
+          "titulo": "Capítulo I",
+          "paragrafo_inicial": 47,
+          "paragrafo_final": 52,
+          "pagina_pdf": 16
+        },
+        {
+          "titulo": "Capítulo II",
+          "paragrafo_inicial": 53,
+          "paragrafo_final": 62,
+          "pagina_pdf": 18
+        },
+        {
+          "titulo": "Capítulo III",
+          "paragrafo_inicial": 63,
+          "paragrafo_final": 72,
+          "pagina_pdf": 20
+        },
+        {
+          "titulo": "Capítulo IV",
+          "paragrafo_inicial": 73,
+          "paragrafo_final": 76,
+          "pagina_pdf": 23
+        },
+        {
+          "titulo": "Capítulo V",
+          "paragrafo_inicial": 77,
+          "paragrafo_final": 90,
+          "pagina_pdf": 24
+        },
+        {
+          "titulo": "Conclusão",
+          "paragrafo_inicial": 91,
+          "paragrafo_final": 93,
+          "pagina_pdf": 28
+        }
+      ]
+    }
+  ]
+}
