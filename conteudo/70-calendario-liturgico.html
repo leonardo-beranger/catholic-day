@@ -4,17 +4,39 @@ titulo: Calendário Litúrgico
 menu: Calendário
 secao: vivencia
 ordem: 70
+scripts: calendario.js
 subtitulo: O ano da Igreja: tempos, festas e cores.
-descricao: Os tempos do ano litúrgico, solenidades, festas e memórias, com as respectivas cores litúrgicas.
+descricao: O calendário litúrgico do ano inteiro — solenidades, festas, memórias e a dedicação de cada mês —, calculado automaticamente para qualquer ano.
 ---
       <section class="secao">
-        <div class="placeholder">
+        <div class="painel">
           <p>
-            <strong>Introdução a escrever.</strong> Explicar o sentido do ano litúrgico como
-            celebração do mistério de Cristo ao longo do tempo, o ciclo dominical (anos A, B, C)
-            e o ciclo ferial (anos I e II).
+            O ano litúrgico é a celebração, ao longo dos meses, de todo o mistério de Cristo —
+            da sua vinda (Advento e Natal) à sua Páscoa (Quaresma, Tríduo e Tempo Pascal),
+            passando pelo Tempo Comum, em que a Igreja medita a totalidade da vida e do
+            ensinamento do Senhor. A leitura dominical das Escrituras segue um ciclo de três
+            anos (A, B e C — Mateus, Marcos e Lucas, com João intercalado), e a leitura ferial
+            um ciclo de dois anos (I e II).
           </p>
         </div>
+
+        <h2>Calendário do ano</h2>
+        <div class="calendario-liturgico" id="calendario-liturgico">
+          <div class="calendario__controles">
+            <label for="calendario-ano">Ano</label>
+            <input type="number" id="calendario-ano" min="1" step="1" inputmode="numeric">
+            <button type="button" class="botao-acao" id="calendario-ano-hoje">Ano atual</button>
+          </div>
+          <div id="calendario-resumo" class="calendario__resumo"></div>
+          <div id="calendario-meses" class="calendario__meses"></div>
+        </div>
+        <p class="fonte-nota">
+          As datas das festas móveis (Páscoa, Cinzas, Ascensão, Pentecostes, Advento, Cristo
+          Rei etc.) são calculadas no navegador a partir da data da Páscoa de cada ano
+          (algoritmo de Meeus/Jones/Butcher), por isso o calendário muda automaticamente
+          conforme o ano escolhido. As festas fixas e a dedicação de cada mês vêm de
+          <code>dados/calendario.json</code>.
+        </p>
 
         <h2>Tempos litúrgicos</h2>
         <div class="tabela-rolagem">
@@ -77,17 +99,15 @@ descricao: Os tempos do ano litúrgico, solenidades, festas e memórias, com as 
       </section>
 
       <section class="secao">
-        <h2>Ferramentas previstas</h2>
+        <h2>Como ler o calendário</h2>
         <ul class="lista-simples">
-          <li>Cálculo automático da data da Páscoa e das festas móveis</li>
-          <li>Visão do mês com o grau de cada celebração e a cor do dia</li>
-          <li>Indicação do ciclo dominical e ferial vigente</li>
-          <li>Marcação de solenidades de preceito no Brasil</li>
+          <li><strong>Solenidade</strong> — o grau mais alto de celebração, própria de Cristo, de
+          Nossa Senhora ou dos mistérios centrais da fé.</li>
+          <li><strong>Festa</strong> — celebração de segundo grau, normalmente de Apóstolos ou
+          acontecimentos importantes.</li>
+          <li><strong>Memória (obrigatória ou facultativa)</strong> — celebração de um santo
+          num dia comum, que pode variar conforme a diocese ou a ordem religiosa.</li>
+          <li><strong>(preceito)</strong> — dia de guarda: participação na Missa é obrigatória
+          como num domingo.</li>
         </ul>
-        <div class="placeholder">
-          <p>
-            <strong>Dados a modelar.</strong> Arquivo <code>dados/calendario.json</code> com as
-            festas fixas e a lógica das móveis derivada da data da Páscoa.
-          </p>
-        </div>
       </section>

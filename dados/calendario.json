@@ -1,17 +1,98 @@
 {
-  "_comentario": "Esqueleto do calendario liturgico. Festas fixas por MM-DD; as moveis derivam da data da Pascoa.",
+  "_comentario": "Calendario liturgico. Festas fixas por MM-DD; as moveis derivam da data da Pascoa (calculada em JS, algoritmo de Meeus/Jones/Butcher). Consumido por estatico/js/calendario.js.",
+
   "tempos": [
     { "id": "advento", "nome": "Advento", "cor": "violeta" },
     { "id": "natal", "nome": "Tempo do Natal", "cor": "branco" },
     { "id": "quaresma", "nome": "Quaresma", "cor": "violeta" },
-    { "id": "triduo", "nome": "Triduo Pascal", "cor": "vermelho/branco" },
+    { "id": "triduo", "nome": "Tríduo Pascal", "cor": "vermelho" },
     { "id": "pascoa", "nome": "Tempo Pascal", "cor": "branco" },
     { "id": "comum", "nome": "Tempo Comum", "cor": "verde" }
   ],
-  "festas_fixas": {
-    "exemplo": { "dia": "00-00", "nome": "", "grau": "", "cor": "", "preceito": false }
-  },
-  "festas_moveis": {
-    "exemplo": { "nome": "", "offset_pascoa_dias": 0, "grau": "", "cor": "" }
+
+  "dedicacoes_mensais": [
+    { "mes": 1, "nome": "Janeiro", "dedicacao": "Santíssimo Nome de Jesus" },
+    { "mes": 2, "nome": "Fevereiro", "dedicacao": "Sagrada Família" },
+    { "mes": 3, "nome": "Março", "dedicacao": "São José" },
+    { "mes": 4, "nome": "Abril", "dedicacao": "Santíssimo Sacramento da Eucaristia" },
+    { "mes": 5, "nome": "Maio", "dedicacao": "Nossa Senhora (mês mariano)" },
+    { "mes": 6, "nome": "Junho", "dedicacao": "Sagrado Coração de Jesus" },
+    { "mes": 7, "nome": "Julho", "dedicacao": "Preciosíssimo Sangue de Cristo" },
+    { "mes": 8, "nome": "Agosto", "dedicacao": "Imaculado Coração de Maria" },
+    { "mes": 9, "nome": "Setembro", "dedicacao": "Nossa Senhora das Dores e Sagrada Escritura" },
+    { "mes": 10, "nome": "Outubro", "dedicacao": "Santíssimo Rosário e Missões" },
+    { "mes": 11, "nome": "Novembro", "dedicacao": "Almas do Purgatório" },
+    { "mes": 12, "nome": "Dezembro", "dedicacao": "Imaculada Conceição e Advento" }
+  ],
+
+  "festas_fixas": [
+    { "dia": "01-01", "nome": "Santa Maria, Mãe de Deus", "grau": "Solenidade", "cor": "branco", "preceito": true },
+    { "dia": "01-06", "nome": "Epifania do Senhor", "grau": "Solenidade", "cor": "branco", "preceito": false },
+    { "dia": "01-25", "nome": "Conversão de São Paulo Apóstolo", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "02-02", "nome": "Apresentação do Senhor", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "02-11", "nome": "Nossa Senhora de Lourdes", "grau": "Memória facultativa", "cor": "branco", "preceito": false },
+    { "dia": "02-22", "nome": "Cátedra de São Pedro Apóstolo", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "03-19", "nome": "São José, Esposo de Maria", "grau": "Solenidade", "cor": "branco", "preceito": false },
+    { "dia": "03-25", "nome": "Anunciação do Senhor", "grau": "Solenidade", "cor": "branco", "preceito": false },
+    { "dia": "04-25", "nome": "São Marcos Evangelista", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "05-01", "nome": "São José Operário", "grau": "Memória facultativa", "cor": "branco", "preceito": false },
+    { "dia": "05-03", "nome": "São Filipe e São Tiago Menor, Apóstolos", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "05-13", "nome": "Nossa Senhora de Fátima", "grau": "Memória facultativa", "cor": "branco", "preceito": false },
+    { "dia": "05-31", "nome": "Visitação de Nossa Senhora", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "06-24", "nome": "Natividade de São João Batista", "grau": "Solenidade", "cor": "branco", "preceito": false },
+    { "dia": "06-29", "nome": "São Pedro e São Paulo, Apóstolos", "grau": "Solenidade", "cor": "vermelho", "preceito": true },
+    { "dia": "07-03", "nome": "São Tomé Apóstolo", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "07-16", "nome": "Nossa Senhora do Carmo", "grau": "Memória facultativa", "cor": "branco", "preceito": false },
+    { "dia": "07-22", "nome": "Santa Maria Madalena", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "07-25", "nome": "São Tiago Maior, Apóstolo", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "07-26", "nome": "São Joaquim e Sant'Ana, pais de Nossa Senhora", "grau": "Memória", "cor": "branco", "preceito": false },
+    { "dia": "08-06", "nome": "Transfiguração do Senhor", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "08-10", "nome": "São Lourenço, Diácono e Mártir", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "08-15", "nome": "Assunção de Nossa Senhora", "grau": "Solenidade", "cor": "branco", "preceito": true },
+    { "dia": "08-22", "nome": "Nossa Senhora Rainha", "grau": "Memória", "cor": "branco", "preceito": false },
+    { "dia": "08-24", "nome": "São Bartolomeu Apóstolo", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "09-08", "nome": "Natividade de Nossa Senhora", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "09-14", "nome": "Exaltação da Santa Cruz", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "09-15", "nome": "Nossa Senhora das Dores", "grau": "Memória", "cor": "branco", "preceito": false },
+    { "dia": "09-21", "nome": "São Mateus, Apóstolo e Evangelista", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "09-29", "nome": "São Miguel, São Gabriel e São Rafael, Arcanjos", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "10-02", "nome": "Santos Anjos da Guarda", "grau": "Memória", "cor": "branco", "preceito": false },
+    { "dia": "10-04", "nome": "São Francisco de Assis", "grau": "Memória", "cor": "branco", "preceito": false },
+    { "dia": "10-07", "nome": "Nossa Senhora do Rosário", "grau": "Memória", "cor": "branco", "preceito": false },
+    { "dia": "10-12", "nome": "Nossa Senhora Aparecida, Padroeira do Brasil", "grau": "Solenidade (Brasil)", "cor": "branco", "preceito": true },
+    { "dia": "10-18", "nome": "São Lucas Evangelista", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "10-28", "nome": "São Simão e São Judas Tadeu, Apóstolos", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "11-01", "nome": "Todos os Santos", "grau": "Solenidade", "cor": "branco", "preceito": true },
+    { "dia": "11-02", "nome": "Comemoração de Todos os Fiéis Defuntos (Finados)", "grau": "Comemoração", "cor": "roxo", "preceito": false },
+    { "dia": "11-09", "nome": "Dedicação da Basílica de Latrão", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "11-21", "nome": "Apresentação de Nossa Senhora", "grau": "Memória", "cor": "branco", "preceito": false },
+    { "dia": "11-30", "nome": "Santo André Apóstolo", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "12-08", "nome": "Imaculada Conceição de Nossa Senhora", "grau": "Solenidade", "cor": "branco", "preceito": true },
+    { "dia": "12-12", "nome": "Nossa Senhora de Guadalupe", "grau": "Memória facultativa", "cor": "branco", "preceito": false },
+    { "dia": "12-25", "nome": "Natal do Senhor", "grau": "Solenidade", "cor": "branco", "preceito": true },
+    { "dia": "12-26", "nome": "Santo Estêvão, Primeiro Mártir", "grau": "Festa", "cor": "vermelho", "preceito": false },
+    { "dia": "12-27", "nome": "São João Apóstolo e Evangelista", "grau": "Festa", "cor": "branco", "preceito": false },
+    { "dia": "12-28", "nome": "Santos Inocentes Mártires", "grau": "Festa", "cor": "vermelho", "preceito": false }
+  ],
+
+  "festas_moveis": [
+    { "id": "cinzas", "nome": "Quarta-feira de Cinzas", "offset_pascoa_dias": -46, "grau": "Início da Quaresma", "cor": "roxo" },
+    { "id": "ramos", "nome": "Domingo de Ramos, na Paixão do Senhor", "offset_pascoa_dias": -7, "grau": "Solenidade", "cor": "vermelho" },
+    { "id": "quinta-santa", "nome": "Quinta-feira Santa (Missa da Ceia do Senhor)", "offset_pascoa_dias": -3, "grau": "Tríduo Pascal", "cor": "branco" },
+    { "id": "sexta-santa", "nome": "Sexta-feira da Paixão do Senhor", "offset_pascoa_dias": -2, "grau": "Tríduo Pascal", "cor": "vermelho" },
+    { "id": "vigilia", "nome": "Vigília Pascal", "offset_pascoa_dias": -1, "grau": "Tríduo Pascal", "cor": "branco" },
+    { "id": "pascoa", "nome": "Domingo de Páscoa da Ressurreição do Senhor", "offset_pascoa_dias": 0, "grau": "Solenidade", "cor": "branco" },
+    { "id": "ascensao", "nome": "Ascensão do Senhor", "offset_pascoa_dias": 39, "grau": "Solenidade", "cor": "branco" },
+    { "id": "pentecostes", "nome": "Pentecostes", "offset_pascoa_dias": 49, "grau": "Solenidade", "cor": "vermelho" },
+    { "id": "trindade", "nome": "Santíssima Trindade", "offset_pascoa_dias": 56, "grau": "Solenidade", "cor": "branco" },
+    { "id": "corpus-christi", "nome": "Santíssimo Corpo e Sangue de Cristo (Corpus Christi)", "offset_pascoa_dias": 60, "grau": "Solenidade", "cor": "branco" },
+    { "id": "sagrado-coracao", "nome": "Sagrado Coração de Jesus", "offset_pascoa_dias": 68, "grau": "Solenidade", "cor": "vermelho" },
+    { "id": "imaculado-coracao", "nome": "Imaculado Coração de Maria", "offset_pascoa_dias": 69, "grau": "Memória", "cor": "branco" }
+  ],
+
+  "notas": {
+    "ascensao": "Em muitas dioceses do Brasil a Ascensão é transferida para o domingo seguinte (offset +42); o site mostra a data tradicional de quinta-feira (+39).",
+    "cristo_rei": "Solenidade de Nosso Senhor Jesus Cristo, Rei do Universo: último domingo do Tempo Comum, imediatamente antes do 1.º Domingo do Advento — calculado a partir do Natal, não da Páscoa.",
+    "advento": "O 1.º Domingo do Advento é o domingo mais próximo de 30 de novembro (entre 27/11 e 03/12) — também calculado a partir do calendário civil, não da Páscoa."
   }
 }

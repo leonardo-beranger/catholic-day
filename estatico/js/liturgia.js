@@ -232,4 +232,38 @@
 
   botaoRecarregar.addEventListener("click", carregar);
   carregar();
+
+  /* Tamanho da letra: escala aplicada via variavel CSS --liturgia-escala,
+     persistida em localStorage para manter a preferencia entre visitas. */
+  (function () {
+    const CHAVE = "catholicday-liturgia-escala";
+    const MIN = 0.8;
+    const MAX = 1.6;
+    const PASSO = 0.1;
+
+    const botaoMenos = document.getElementById("liturgia-fonte-menos");
+    const botaoMais = document.getElementById("liturgia-fonte-mais");
+    if (!botaoMenos || !botaoMais) return;
+
+    let escala = parseFloat(localStorage.getItem(CHAVE)) || 1;
+
+    function aplicar() {
+      escala = Math.min(MAX, Math.max(MIN, escala));
+      raiz.style.setProperty("--liturgia-escala", escala.toFixed(2));
+      botaoMenos.disabled = escala <= MIN;
+      botaoMais.disabled = escala >= MAX;
+      localStorage.setItem(CHAVE, escala.toFixed(2));
+    }
+
+    botaoMenos.addEventListener("click", function () {
+      escala -= PASSO;
+      aplicar();
+    });
+    botaoMais.addEventListener("click", function () {
+      escala += PASSO;
+      aplicar();
+    });
+
+    aplicar();
+  })();
 })();

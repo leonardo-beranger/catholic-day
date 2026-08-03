@@ -510,9 +510,63 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
 .selo--branco { color: var(--cor-ouro); }
 .selo--vermelho { color: var(--cor-primaria); }
 
+/* ------------------------------------------------------------ Calendário Litúrgico */
+
+.calendario-liturgico { margin-top: 1.25rem; }
+
+.calendario__controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.25rem;
+}
+.calendario__controles label { font-weight: 600; font-size: .88rem; }
+.calendario__controles input[type="number"] {
+  width: 7rem;
+  padding: .5rem .75rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  font-family: var(--fonte-texto);
+  font-size: .95rem;
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+}
+
+.calendario__resumo {
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  background: var(--cor-fundo-alt);
+  border-left: 3px solid var(--cor-ouro);
+  border-radius: 0 var(--raio) var(--raio) 0;
+  font-size: .92rem;
+}
+.calendario__resumo p { margin: 0; }
+
+.calendario__meses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+.calendario__mes {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.1rem 1.25rem 1.35rem;
+  box-shadow: var(--sombra);
+}
+.calendario__mes h3 { margin: 0 0 .3rem; color: var(--cor-primaria); }
+.calendario__dedicacao { margin: 0 0 .85rem; font-size: .85rem; color: var(--cor-texto-suave); }
+.calendario__mes table { min-width: 0; font-size: .84rem; }
+.calendario__mes th, .calendario__mes td { padding: .5rem .6rem; }
+.calendario__grau { display: block; font-size: .7rem; color: var(--cor-texto-suave); margin-top: .2rem; }
+.calendario__preceito { color: var(--cor-primaria); font-size: .78rem; font-weight: 600; }
+.calendario__vazio { font-size: .85rem; color: var(--cor-texto-suave); margin: 0; }
+
 /* ------------------------------------------------------------ Liturgia Diária */
 
 .liturgia {
+  --liturgia-escala: 1;
   background: var(--cor-superficie);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
@@ -534,6 +588,41 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   margin: 0;
 }
 .liturgia__titulo-celebracao { font-weight: 500; }
+
+.liturgia__fonte {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: .85rem;
+}
+.liturgia__fonte-legenda {
+  font-size: .8rem;
+  color: var(--cor-texto-suave);
+  margin-right: .1rem;
+}
+.liturgia__fonte-botao {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--cor-primaria);
+  background: transparent;
+  color: var(--cor-primaria);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--transicao), background var(--transicao);
+}
+.liturgia__fonte-botao:hover { background: var(--cor-primaria); color: #fff; }
+.liturgia__fonte-botao:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--cor-primaria);
+}
 
 /* Estados de carregamento e erro. */
 .liturgia__estado {
@@ -631,11 +720,15 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   border-left: 3px solid var(--cor-ouro);
   border-radius: 0 var(--raio) var(--raio) 0;
   font-family: var(--fonte-titulo);
-  font-size: 1.05rem;
+  font-size: calc(1.05rem * var(--liturgia-escala));
   font-style: italic;
 }
 
-.leitura__texto { font-size: 1.02rem; line-height: 1.75; max-width: 42rem; }
+.leitura__texto {
+  font-size: calc(1.02rem * var(--liturgia-escala));
+  line-height: 1.75;
+  max-width: 42rem;
+}
 .leitura__texto p { margin-bottom: .9rem; }
 .versiculo {
   margin-right: .15rem;
