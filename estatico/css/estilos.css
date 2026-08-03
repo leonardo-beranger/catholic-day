@@ -199,6 +199,50 @@ img { max-width: 100%; height: auto; }
 .menu a:hover { color: var(--cor-texto); border-bottom-color: var(--cor-ouro); }
 .menu a[aria-current="page"] { color: var(--cor-primaria); border-bottom-color: var(--cor-primaria); font-weight: 500; }
 
+/* Submenu: paginas com front matter `pai:` aparecem suspensas sob o link
+   da pagina-mae, em vez de items proprios do menu. */
+.menu-item--tem-submenu { position: relative; }
+.menu-item--tem-submenu > a::after {
+  content: "▾";
+  display: inline-block;
+  margin-left: .3rem;
+  font-size: .7em;
+  color: var(--cor-ouro);
+}
+.menu-item--tem-submenu .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  flex-direction: column;
+  gap: 0;
+  min-width: 15rem;
+  margin-top: .6rem;
+  padding: .5rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+.menu-item--tem-submenu:hover .submenu,
+.menu-item--tem-submenu:focus-within .submenu {
+  display: flex;
+}
+.menu-item--tem-submenu .submenu li { width: 100%; }
+.menu-item--tem-submenu .submenu a {
+  display: block;
+  padding: .5rem .6rem;
+  border-radius: calc(var(--raio) - 4px);
+  border-bottom: none;
+  white-space: normal;
+}
+.menu-item--tem-submenu .submenu a:hover,
+.menu-item--tem-submenu .submenu a[aria-current="page"] {
+  background: var(--cor-fundo-alt);
+  color: var(--cor-primaria);
+}
+
 @media (max-width: 1060px) {
   .menu-botao { display: block; }
   .menu {
@@ -216,6 +260,19 @@ img { max-width: 100%; height: auto; }
   .menu ul { flex-direction: column; gap: .5rem; }
   .menu a { font-size: 1rem; }
   .menu--rodape { position: static; display: flex; flex-direction: row; flex-wrap: wrap; gap: 2rem; box-shadow: none; border: 0; padding: 0; background: none; }
+
+  /* Sem hover no toque: o submenu fica sempre visivel, aninhado. */
+  .menu-item--tem-submenu .submenu {
+    display: flex;
+    position: static;
+    margin: .6rem 0 0 1rem;
+    padding: 0 0 0 .75rem;
+    border: none;
+    border-left: 2px solid var(--cor-borda);
+    box-shadow: none;
+    background: none;
+  }
+  .menu-item--tem-submenu .submenu a { padding: .35rem 0; font-size: .92rem; color: var(--cor-texto-suave); }
 }
 
 /* ------------------------------------------------------- Cabeçalho da página */

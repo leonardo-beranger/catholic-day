@@ -124,20 +124,45 @@ def carregar_paginas() -> list[Pagina]:
 
 
 def montar_menu(paginas: list[Pagina], atual: Pagina) -> str:
-    """Menu agrupado por secao (usado no header e no rodape)."""
+    """Menu agrupado por secao (usado no header e no rodape).
+
+    Paginas com front matter `pai: <slug>` nao aparecem como item proprio do
+    menu — viram um submenu suspenso sob o link da pagina-mae (ex.: as 5
+    partes da Suma Teologica aparecem sob "Ensinos de Sao Tomas"). Uma pagina
+    sem filhos nao ganha submenu nenhum.
+    """
+    filhos_por_pai: dict[str, list[Pagina]] = {}
+    for p in paginas:
+        pai = p.meta.get("pai")
+        if pai:
+            filhos_por_pai.setdefault(pai, []).append(p)
+
+    def montar_item(p: Pagina) -> str:
+        ativo = ' aria-current="page"' if p.slug == atual.slug else ""
+        filhos = filhos_por_pai.get(p.slug, [])
+        if not filhos:
+            return f'            <li><a href="{p.url}"{ativo}>{p.rotulo_menu}</a></li>'
+        sublinks = "\n".join(
+            '                <li><a href="{url}"{ativo}>{rotulo}</a></li>'.format(
+                url=f.url,
+                rotulo=f.rotulo_menu,
+                ativo=' aria-current="page"' if f.slug == atual.slug else "",
+            )
+            for f in filhos
+        )
+        return (
+            f'            <li class="menu-item menu-item--tem-submenu">\n'
+            f'              <a href="{p.url}"{ativo}>{p.rotulo_menu}</a>\n'
+            f'              <ul class="submenu">\n{sublinks}\n              </ul>\n'
+            f"            </li>"
+        )
+
     partes: list[str] = []
     for chave, rotulo in SECOES:
         itens = [p for p in paginas if p.secao == chave]
         if not itens:
             continue
-        links = "\n".join(
-            '            <li><a href="{url}"{ativo}>{rotulo}</a></li>'.format(
-                url=p.url,
-                rotulo=p.rotulo_menu,
-                ativo=' aria-current="page"' if p.slug == atual.slug else "",
-            )
-            for p in itens
-        )
+        links = "\n".join(montar_item(p) for p in itens)
         partes.append(
             f'        <div class="menu-grupo">\n'
             f'          <p class="menu-grupo__titulo">{rotulo}</p>\n'
