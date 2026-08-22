@@ -23,6 +23,39 @@
     });
   }
 
+  // Gatilhos de secao no cabecalho (Informacoes de Fe / Vivencia /
+  // Noticias): clique abre/fecha o submenu, sem depender so de hover — util
+  // em telas com toque numa largura de ecra que ainda mostra o menu
+  // suspenso (nao caiu no menu mobile).
+  const gatilhosSecao = document.querySelectorAll(".menu-grupo__gatilho");
+  if (gatilhosSecao.length) {
+    function fecharTodos(excepto) {
+      gatilhosSecao.forEach(function (g) {
+        if (g !== excepto) {
+          g.closest(".menu-item--tem-submenu").classList.remove("menu-item--aberto");
+          g.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    gatilhosSecao.forEach(function (gatilho) {
+      gatilho.setAttribute("aria-expanded", "false");
+      gatilho.setAttribute("aria-haspopup", "true");
+      gatilho.addEventListener("click", function () {
+        const item = gatilho.closest(".menu-item--tem-submenu");
+        const aberto = item.classList.toggle("menu-item--aberto");
+        gatilho.setAttribute("aria-expanded", String(aberto));
+        fecharTodos(aberto ? gatilho : null);
+      });
+    });
+
+    document.addEventListener("click", function (evento) {
+      if (!evento.target.closest(".menu-item--tem-submenu")) {
+        fecharTodos(null);
+      }
+    });
+  }
+
   // Leitor de PDF embutido do Catecismo (CIC).
   const leitor = document.getElementById("leitor-cic");
   if (leitor) {

@@ -169,14 +169,18 @@ img { max-width: 100%; height: auto; }
 .menu-botao__barras::before { transform: translateY(-6px); }
 .menu-botao__barras::after { transform: translateY(4px); }
 
-.menu {
+.menu { display: flex; }
+.menu__grupos {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  align-items: baseline;
+  align-items: center;
   flex: 1 1 auto;
   min-width: 0;
-  gap: .4rem 1.75rem;
+  gap: .5rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .menu-grupo { position: relative; min-width: 0; }
 
@@ -210,17 +214,37 @@ img { max-width: 100%; height: auto; }
 .menu a:hover { color: var(--cor-texto); border-bottom-color: var(--cor-ouro); }
 .menu a[aria-current="page"] { color: var(--cor-primaria); border-bottom-color: var(--cor-primaria); font-weight: 500; }
 
+/* Gatilho de secao no cabecalho (Informacoes de Fe / Vivencia / Noticias):
+   um botao com a mesma cara de link, que abre um submenu suspenso com as
+   paginas daquela secao — evita que o cabecalho quebre linha com todos os
+   links sempre visiveis. */
+.menu-grupo__gatilho {
+  font: inherit;
+  font-size: .88rem;
+  color: var(--cor-texto-suave);
+  background: none;
+  border: none;
+  padding: 0 0 2px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transicao), border-color var(--transicao);
+}
+.menu-grupo__gatilho:hover { color: var(--cor-texto); border-bottom-color: var(--cor-ouro); }
+.menu-grupo__gatilho[aria-current="true"] { color: var(--cor-primaria); border-bottom-color: var(--cor-primaria); font-weight: 500; }
+
 /* Submenu: paginas com front matter `pai:` aparecem suspensas sob o link
-   da pagina-mae, em vez de items proprios do menu. */
+   da pagina-mae, em vez de items proprios do menu; secoes do cabecalho
+   usam o mesmo mecanismo, com um botao no lugar do link. */
 .menu-item--tem-submenu { position: relative; }
-.menu-item--tem-submenu > a::after {
+.menu-item--tem-submenu > a::after,
+.menu-item--tem-submenu > .menu-grupo__gatilho::after {
   content: "▾";
   display: inline-block;
   margin-left: .3rem;
   font-size: .7em;
   color: var(--cor-ouro);
 }
-.menu-item--tem-submenu .submenu {
+.menu-item--tem-submenu > .submenu {
   display: none;
   position: absolute;
   top: 100%;
@@ -236,10 +260,12 @@ img { max-width: 100%; height: auto; }
   border-radius: var(--raio);
   box-shadow: var(--sombra);
 }
-.menu-item--tem-submenu:hover .submenu,
-.menu-item--tem-submenu:focus-within .submenu {
+.menu-item--tem-submenu:hover > .submenu,
+.menu-item--tem-submenu:focus-within > .submenu,
+.menu-item--tem-submenu.menu-item--aberto > .submenu {
   display: flex;
 }
+.menu-item--aberto > .menu-grupo__gatilho::after { transform: rotate(180deg); display: inline-block; }
 .menu-item--tem-submenu .submenu li { width: 100%; }
 .menu-item--tem-submenu .submenu a {
   display: block;
@@ -270,6 +296,7 @@ img { max-width: 100%; height: auto; }
   .menu.aberto { display: flex; }
   .menu ul { flex-direction: column; gap: .5rem; }
   .menu a { font-size: 1rem; }
+  .menu-grupo__gatilho { font-size: 1rem; text-align: left; padding: 0; }
   .menu--rodape { position: static; display: flex; flex-direction: row; flex-wrap: wrap; gap: 2rem; box-shadow: none; border: 0; padding: 0; background: none; }
 
   /* Sem hover no toque: o submenu fica sempre visivel, aninhado. */
