@@ -123,46 +123,79 @@ def carregar_paginas() -> list[Pagina]:
     return paginas
 
 
-def montar_menu(paginas: list[Pagina], atual: Pagina) -> str:
-    """Menu agrupado por secao (usado no header e no rodape).
-
-    Paginas com front matter `pai: <slug>` nao aparecem como item proprio do
-    menu — viram um submenu suspenso sob o link da pagina-mae (ex.: as 5
-    partes da Suma Teologica aparecem sob "Ensinos de Sao Tomas"). Uma pagina
-    sem filhos nao ganha submenu nenhum.
-    """
-    filhos_por_pai: dict[str, list[Pagina]] = {}
+def _filhos_por_pai(paginas: list[Pagina]) -> dict[str, list[Pagina]]:
+    """Paginas com front matter `pai: <slug>` nao aparecem como item proprio
+    do menu — viram um submenu suspenso sob o link da pagina-mae (ex.: as 5
+    partes da Suma Teologica aparecem sob "Ensinos de Sao Tomas")."""
+    resultado: dict[str, list[Pagina]] = {}
     for p in paginas:
         pai = p.meta.get("pai")
         if pai:
-            filhos_por_pai.setdefault(pai, []).append(p)
+            resultado.setdefault(pai, []).append(p)
+    return resultado
 
-    def montar_item(p: Pagina) -> str:
-        ativo = ' aria-current="page"' if p.slug == atual.slug else ""
-        filhos = filhos_por_pai.get(p.slug, [])
-        if not filhos:
-            return f'            <li><a href="{p.url}"{ativo}>{p.rotulo_menu}</a></li>'
-        sublinks = "\n".join(
-            '                <li><a href="{url}"{ativo}>{rotulo}</a></li>'.format(
-                url=f.url,
-                rotulo=f.rotulo_menu,
-                ativo=' aria-current="page"' if f.slug == atual.slug else "",
-            )
-            for f in filhos
+
+def _montar_item_pagina(p: Pagina, atual: Pagina, filhos_por_pai: dict[str, list[Pagina]], indentacao: str) -> str:
+    ativo = ' aria-current="page"' if p.slug == atual.slug else ""
+    filhos = filhos_por_pai.get(p.slug, [])
+    if not filhos:
+        return f'{indentacao}<li><a href="{p.url}"{ativo}>{p.rotulo_menu}</a></li>'
+    sublinks = "\n".join(
+        '{ind}    <li><a href="{url}"{ativo}>{rotulo}</a></li>'.format(
+            ind=indentacao,
+            url=f.url,
+            rotulo=f.rotulo_menu,
+            ativo=' aria-current="page"' if f.slug == atual.slug else "",
         )
-        return (
-            f'            <li class="menu-item menu-item--tem-submenu">\n'
-            f'              <a href="{p.url}"{ativo}>{p.rotulo_menu}</a>\n'
-            f'              <ul class="submenu">\n{sublinks}\n              </ul>\n'
-            f"            </li>"
+        for f in filhos
+    )
+    return (
+        f'{indentacao}<li class="menu-item menu-item--tem-submenu">\n'
+        f'{indentacao}  <a href="{p.url}"{ativo}>{p.rotulo_menu}</a>\n'
+        f'{indentacao}  <ul class="submenu">\n{sublinks}\n{indentacao}  </ul>\n'
+        f"{indentacao}</li>"
+    )
+
+
+def montar_menu_cabecalho(paginas: list[Pagina], atual: Pagina) -> str:
+    """Menu do cabecalho: cada secao (Informacoes de Fe / Vivencia /
+    Noticias) vira um item suspenso — um botao-gatilho com o nome da secao
+    que, ao passar o mouse ou focar, mostra os links daquela secao. Evita
+    que o cabecalho quebre linha com todos os links sempre visiveis."""
+    filhos_por_pai = _filhos_por_pai(paginas)
+
+    grupos: list[str] = []
+    for chave, rotulo in SECOES:
+        itens = [p for p in paginas if p.secao == chave]
+        if not itens:
+            continue
+        secao_ativa = any(
+            p.slug == atual.slug or atual.slug in {f.slug for f in filhos_por_pai.get(p.slug, [])}
+            for p in itens
         )
+        ativo = ' aria-current="true"' if secao_ativa else ""
+        links = "\n".join(_montar_item_pagina(p, atual, filhos_por_pai, "                ") for p in itens)
+        grupos.append(
+            f'          <li class="menu-item menu-item--tem-submenu">\n'
+            f'            <button type="button" class="menu-grupo__gatilho"{ativo}>{rotulo}</button>\n'
+            f'            <ul class="submenu">\n{links}\n            </ul>\n'
+            f"          </li>"
+        )
+    return "\n".join(grupos)
+
+
+def montar_menu_rodape(paginas: list[Pagina], atual: Pagina) -> str:
+    """Menu do rodape: mantem o formato antigo, sempre visivel — um bloco
+    por secao com o rotulo acima e os links abaixo. Funciona bem no rodape
+    porque nao compete por espaco horizontal com nada."""
+    filhos_por_pai = _filhos_por_pai(paginas)
 
     partes: list[str] = []
     for chave, rotulo in SECOES:
         itens = [p for p in paginas if p.secao == chave]
         if not itens:
             continue
-        links = "\n".join(montar_item(p) for p in itens)
+        links = "\n".join(_montar_item_pagina(p, atual, filhos_por_pai, "            ") for p in itens)
         partes.append(
             f'        <div class="menu-grupo">\n'
             f'          <p class="menu-grupo__titulo">{rotulo}</p>\n'
@@ -234,7 +267,8 @@ def gerar() -> None:
                 "subtitulo": pagina.subtitulo,
                 "descricao": pagina.descricao or pagina.subtitulo,
                 "slug": pagina.slug,
-                "menu": montar_menu(paginas, pagina),
+                "menu": montar_menu_cabecalho(paginas, pagina),
+                "menu_rodape": montar_menu_rodape(paginas, pagina),
                 "conteudo": pagina.corpo,
                 "scripts": pagina.tags_script,
                 "classe_pagina": f"pagina-{pagina.slug}",
