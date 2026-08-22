@@ -12,7 +12,8 @@
   --cor-texto-suave: #5f574e;
   --cor-primaria: #6d1f2b;      /* bordô — Paixão / mártires */
   --cor-primaria-clara: #8f3140;
-  --cor-ouro: #a9852f;          /* ouro velho — solenidades */
+  --cor-ouro: #a9852f;          /* ouro velho — solenidades (bordas, ícones, pontos: exige só 3:1) */
+  --cor-ouro-texto: #83641b;    /* mesma família, escurecida para passar 4.5:1 em texto */
   --cor-verde: #3f6350;         /* tempo comum */
   --cor-violeta: #5c4571;       /* advento / quaresma */
 
@@ -36,6 +37,7 @@
     --cor-primaria: #f2555c;      /* vermelho — legível sobre fundo escuro */
     --cor-primaria-clara: #ff7a80;
     --cor-ouro: #d9b463;
+    --cor-ouro-texto: #d9b463;
     --cor-verde: #7fae94;
     --cor-violeta: #b39ccc;
     --sombra: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .3);
@@ -175,7 +177,7 @@ img { max-width: 100%; height: auto; }
   font-size: .68rem;
   letter-spacing: .09em;
   text-transform: uppercase;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
   font-weight: 600;
 }
 
@@ -413,7 +415,7 @@ a.cartao:hover { transform: translateY(-2px); border-color: var(--cor-ouro); }
   font-size: .68rem;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
   font-weight: 600;
 }
 
@@ -483,7 +485,7 @@ a.cartao:hover { transform: translateY(-2px); border-color: var(--cor-ouro); }
   margin-left: auto;
   font-size: .8rem;
   font-weight: 600;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
   white-space: nowrap;
 }
 .ficha__ref a { color: inherit; }
@@ -575,7 +577,7 @@ a.cartao:hover { transform: translateY(-2px); border-color: var(--cor-ouro); }
 }
 .linha-tempo h3 { margin: 0 0 .2rem; font-size: 1.1rem; }
 .linha-tempo p { margin: 0; font-size: .92rem; color: var(--cor-texto-suave); }
-.linha-tempo__periodo { font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; color: var(--cor-ouro); font-weight: 600; }
+.linha-tempo__periodo { font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; color: var(--cor-ouro-texto); font-weight: 600; }
 
 /* Tabelas (profecias, calendário). */
 .tabela-rolagem { overflow-x: auto; margin-top: 1.75rem; }
@@ -598,7 +600,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
 .selo::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
 .selo--verde { color: var(--cor-verde); }
 .selo--violeta { color: var(--cor-violeta); }
-.selo--branco { color: var(--cor-ouro); }
+.selo--branco { color: var(--cor-ouro-texto); }
 .selo--vermelho { color: var(--cor-primaria); }
 
 /* ------------------------------------------------------------ Calendário Litúrgico */
@@ -692,8 +694,8 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   margin-right: .1rem;
 }
 .liturgia__fonte-botao {
-  width: 2rem;
-  height: 2rem;
+  width: 2.75rem;
+  height: 2.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -801,7 +803,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   margin-left: auto;
   font-size: .82rem;
   font-weight: 600;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
   white-space: nowrap;
 }
 
@@ -825,7 +827,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   margin-right: .15rem;
   font-size: .68em;
   font-weight: 600;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
 }
 
 /* Orações do dia (bloco recolhível). */
@@ -860,7 +862,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   font-size: .74rem;
   letter-spacing: .07em;
   text-transform: uppercase;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
   font-family: var(--fonte-texto);
 }
 .oracao p { margin: 0; font-size: .94rem; }
@@ -958,7 +960,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   font-size: 1rem;
   letter-spacing: .04em;
   text-transform: uppercase;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
 }
 .santo__oracao p {
   font-family: var(--fonte-titulo);
@@ -1078,7 +1080,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   padding-top: .5rem;
   font-size: .84rem;
   font-weight: 600;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
 }
 .carrossel__acao::after {
   content: "→";
@@ -1250,7 +1252,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   margin-left: auto;
   font-size: .74rem;
   font-weight: 600;
-  color: var(--cor-ouro);
+  color: var(--cor-ouro-texto);
   white-space: nowrap;
 }
 .cic-folha p { font-size: .94rem; }
@@ -1349,7 +1351,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
 .botao-baixar:hover { background: var(--cor-primaria-clara); color: #fff; }
 
 .botao-fechar {
-  width: 28px; height: 28px;
+  width: 44px; height: 44px;
   display: grid;
   place-items: center;
   border-radius: 50%;
