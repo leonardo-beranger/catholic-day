@@ -473,6 +473,26 @@ a.cartao:hover { transform: translateY(-2px); border-color: var(--cor-ouro); }
 .ficha--longa { border-left-color: var(--cor-primaria); }
 .ficha--termo { margin-top: 0; padding: 1.25rem 1.5rem; box-shadow: none; }
 
+/* Ficha expansivel: <details> com o mesmo visual da .ficha, cabecalho vira
+   o gatilho de abrir/fechar (mesmo mecanismo do .tema, sem JS). */
+.ficha--expansivel { padding: 0; }
+.ficha--expansivel > .ficha__cabecalho {
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 0;
+  cursor: pointer;
+  list-style: none;
+}
+.ficha--expansivel > .ficha__cabecalho::-webkit-details-marker { display: none; }
+.ficha--expansivel > .ficha__cabecalho::after {
+  content: "▾";
+  margin-left: .5rem;
+  font-size: .8rem;
+  color: var(--cor-ouro);
+  transition: transform var(--transicao);
+}
+.ficha--expansivel[open] > .ficha__cabecalho::after { transform: rotate(180deg); }
+.ficha--expansivel > .ficha__corpo { padding: 0 1.75rem 1.5rem; }
+
 .ficha__cabecalho {
   display: flex;
   flex-wrap: wrap;

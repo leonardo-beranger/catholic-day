@@ -50,51 +50,6 @@ INTRO = """      <section class="secao">
       </section>
 
       <section class="secao">
-        <h2>Os vinte e um concílios ecuménicos</h2>
-        <p class="secao__intro">
-          Visão de conjunto. As duas últimas colunas levam à ficha de cada concílio mais
-          abaixo — os 16 documentos completos do Vaticano II, ou o resumo com citação
-          latina e referência dos demais.
-        </p>
-
-        <div class="tabela-rolagem">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Concílio</th>
-                <th>Ano</th>
-                <th>Definições principais</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>1</td><td><a href="#concilio-1">Niceia I</a></td><td>325</td><td>Consubstancialidade do Filho (homoousios)</td></tr>
-              <tr><td>2</td><td><a href="#concilio-2">Constantinopla I</a></td><td>381</td><td>Divindade do Espírito Santo; Símbolo Niceno-Constantinopolitano</td></tr>
-              <tr><td>3</td><td><a href="#concilio-3">Éfeso</a></td><td>431</td><td>Maria Theotokos (Mãe de Deus)</td></tr>
-              <tr><td>4</td><td><a href="#concilio-4">Calcedônia</a></td><td>451</td><td>Duas naturezas em uma só Pessoa</td></tr>
-              <tr><td>5</td><td><a href="#concilio-5">Constantinopla II</a></td><td>553</td><td>Reafirma Calcedônia; Três Capítulos</td></tr>
-              <tr><td>6</td><td><a href="#concilio-6">Constantinopla III</a></td><td>680–681</td><td>Duas vontades em Cristo (antimonotelismo)</td></tr>
-              <tr><td>7</td><td><a href="#concilio-7">Niceia II</a></td><td>787</td><td>Legitimidade do culto às imagens</td></tr>
-              <tr><td>8</td><td><a href="#concilio-8">Constantinopla IV</a></td><td>869–870</td><td>Questão foviana</td></tr>
-              <tr><td>9</td><td><a href="#concilio-9">Latrão I</a></td><td>1123</td><td>Fim da Questão das Investiduras</td></tr>
-              <tr><td>10</td><td><a href="#concilio-10">Latrão II</a></td><td>1139</td><td>Fim do cisma de Anacleto II</td></tr>
-              <tr><td>11</td><td><a href="#concilio-11">Latrão III</a></td><td>1179</td><td>Regras da eleição papal</td></tr>
-              <tr><td>12</td><td><a href="#concilio-12">Latrão IV</a></td><td>1215</td><td>Transubstanciação; confissão e comunhão anuais</td></tr>
-              <tr><td>13</td><td><a href="#concilio-13">Lyon I</a></td><td>1245</td><td>Deposição de Frederico II</td></tr>
-              <tr><td>14</td><td><a href="#concilio-14">Lyon II</a></td><td>1274</td><td>Tentativa de união com Bizâncio</td></tr>
-              <tr><td>15</td><td><a href="#concilio-15">Viena</a></td><td>1311–1312</td><td>Supressão dos Templários</td></tr>
-              <tr><td>16</td><td><a href="#concilio-16">Constança</a></td><td>1414–1418</td><td>Fim do Grande Cisma do Ocidente</td></tr>
-              <tr><td>17</td><td><a href="#concilio-17">Basileia–Ferrara–Florença</a></td><td>1431–1445</td><td>União com Igrejas orientais; primado romano</td></tr>
-              <tr><td>18</td><td><a href="#concilio-18">Latrão V</a></td><td>1512–1517</td><td>Imortalidade da alma; reforma pré-tridentina</td></tr>
-              <tr><td>19</td><td><a href="#concilio-19">Trento</a></td><td>1545–1563</td><td>Resposta à Reforma; justificação; sacramentos</td></tr>
-              <tr><td>20</td><td><a href="#concilio-20">Vaticano I</a></td><td>1869–1870</td><td>Primado e infalibilidade papal</td></tr>
-              <tr><td>21</td><td><a href="#vaticano-ii">Vaticano II</a></td><td>1962–1965</td><td>16 documentos — ver árvore completa abaixo</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="secao">
         <h2>Eixos de estudo</h2>
         <div class="grade">
           <div class="cartao">
@@ -120,7 +75,41 @@ INTRO = """      <section class="secao">
         </div>
       </section>
 
-      <section class="secao" id="vaticano-ii">
+      <section class="secao">
+        <h2>Os vinte e um concílios ecuménicos</h2>
+        <p class="secao__intro">
+          Visão de conjunto em ordem cronológica. Cada item leva à ficha do concílio mais
+          abaixo — os 16 documentos completos do Vaticano II, ou o resumo com citação
+          latina e referência dos demais.
+        </p>
+
+        <ol class="linha-tempo">
+          <li><span class="linha-tempo__periodo">325</span><h3><a href="#concilio-1">1. Niceia I</a></h3><p>Consubstancialidade do Filho (homoousios).</p></li>
+          <li><span class="linha-tempo__periodo">381</span><h3><a href="#concilio-2">2. Constantinopla I</a></h3><p>Divindade do Espírito Santo; Símbolo Niceno-Constantinopolitano.</p></li>
+          <li><span class="linha-tempo__periodo">431</span><h3><a href="#concilio-3">3. Éfeso</a></h3><p>Maria Theotokos (Mãe de Deus).</p></li>
+          <li><span class="linha-tempo__periodo">451</span><h3><a href="#concilio-4">4. Calcedônia</a></h3><p>Duas naturezas em uma só Pessoa.</p></li>
+          <li><span class="linha-tempo__periodo">553</span><h3><a href="#concilio-5">5. Constantinopla II</a></h3><p>Reafirma Calcedônia; Três Capítulos.</p></li>
+          <li><span class="linha-tempo__periodo">680–681</span><h3><a href="#concilio-6">6. Constantinopla III</a></h3><p>Duas vontades em Cristo (antimonotelismo).</p></li>
+          <li><span class="linha-tempo__periodo">787</span><h3><a href="#concilio-7">7. Niceia II</a></h3><p>Legitimidade do culto às imagens.</p></li>
+          <li><span class="linha-tempo__periodo">869–870</span><h3><a href="#concilio-8">8. Constantinopla IV</a></h3><p>Questão foviana.</p></li>
+          <li><span class="linha-tempo__periodo">1123</span><h3><a href="#concilio-9">9. Latrão I</a></h3><p>Fim da Questão das Investiduras.</p></li>
+          <li><span class="linha-tempo__periodo">1139</span><h3><a href="#concilio-10">10. Latrão II</a></h3><p>Fim do cisma de Anacleto II.</p></li>
+          <li><span class="linha-tempo__periodo">1179</span><h3><a href="#concilio-11">11. Latrão III</a></h3><p>Regras da eleição papal.</p></li>
+          <li><span class="linha-tempo__periodo">1215</span><h3><a href="#concilio-12">12. Latrão IV</a></h3><p>Transubstanciação; confissão e comunhão anuais.</p></li>
+          <li><span class="linha-tempo__periodo">1245</span><h3><a href="#concilio-13">13. Lyon I</a></h3><p>Deposição de Frederico II.</p></li>
+          <li><span class="linha-tempo__periodo">1274</span><h3><a href="#concilio-14">14. Lyon II</a></h3><p>Tentativa de união com Bizâncio.</p></li>
+          <li><span class="linha-tempo__periodo">1311–1312</span><h3><a href="#concilio-15">15. Viena</a></h3><p>Supressão dos Templários.</p></li>
+          <li><span class="linha-tempo__periodo">1414–1418</span><h3><a href="#concilio-16">16. Constança</a></h3><p>Fim do Grande Cisma do Ocidente.</p></li>
+          <li><span class="linha-tempo__periodo">1431–1445</span><h3><a href="#concilio-17">17. Basileia–Ferrara–Florença</a></h3><p>União com Igrejas orientais; primado romano.</p></li>
+          <li><span class="linha-tempo__periodo">1512–1517</span><h3><a href="#concilio-18">18. Latrão V</a></h3><p>Imortalidade da alma; reforma pré-tridentina.</p></li>
+          <li><span class="linha-tempo__periodo">1545–1563</span><h3><a href="#concilio-19">19. Trento</a></h3><p>Resposta à Reforma; justificação; sacramentos.</p></li>
+          <li><span class="linha-tempo__periodo">1869–1870</span><h3><a href="#concilio-20">20. Vaticano I</a></h3><p>Primado e infalibilidade papal.</p></li>
+          <li><span class="linha-tempo__periodo">1962–1965</span><h3><a href="#vaticano-ii">21. Vaticano II</a></h3><p>16 documentos — ver árvore completa mais abaixo.</p></li>
+        </ol>
+      </section>
+"""
+
+VATICANO_II = """      <section class="secao" id="vaticano-ii">
         <h2>Vaticano II — os 16 documentos completos</h2>
         <p class="secao__intro">
           Único concílio com texto integral em português disponível na fonte oficial
@@ -129,9 +118,7 @@ INTRO = """      <section class="secao">
         </p>
 """
 
-FIM_INTRO_VII = """      </section>
-
-      <section class="secao">
+FIM_INTRO_VII = """      <section class="secao">
         <h2>Os outros vinte concílios</h2>
         <div class="painel">
           <p>
@@ -178,9 +165,11 @@ def main():
     conteudo = (
         FRONT_MATTER
         + INTRO
-        + arvore_vii
         + FIM_INTRO_VII
         + fichas
+        + "      </section>\n"
+        + VATICANO_II
+        + arvore_vii
         + "      </section>\n"
     )
 
