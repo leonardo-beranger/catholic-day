@@ -218,8 +218,8 @@ img { max-width: 100%; height: auto; }
   flex-direction: column;
   gap: 0;
   min-width: 15rem;
-  margin-top: .6rem;
-  padding: .5rem;
+  margin-top: 0;
+  padding: 1.1rem .5rem .5rem;
   background: var(--cor-superficie);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
@@ -416,6 +416,40 @@ a.cartao:hover { transform: translateY(-2px); border-color: var(--cor-ouro); }
   color: var(--cor-ouro);
   font-weight: 600;
 }
+
+/* Temas expansiveis (ex.: categorias de profecias): quadrado com o nome
+   do tema que se expande, ao clicar, mostrando os blocos de conteudo. */
+.temas { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.75rem; }
+.tema {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  transition: border-color var(--transicao);
+}
+.tema[open] { border-color: var(--cor-ouro); }
+.tema__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+.tema__cabecalho::-webkit-details-marker { display: none; }
+.tema__cabecalho span:first-child { display: flex; flex-direction: column; gap: .3rem; }
+.tema__cabecalho h3 { margin: 0; color: var(--cor-primaria); }
+.tema__seta {
+  flex-shrink: 0;
+  font-size: .8rem;
+  color: var(--cor-ouro);
+  transition: transform var(--transicao);
+}
+.tema[open] .tema__seta { transform: rotate(180deg); }
+.tema__intro { margin: 0; font-size: .92rem; color: var(--cor-texto-suave); }
+.tema__conteudo { padding: 0 1.75rem 1.75rem; }
+.tema__conteudo .ficha:first-child { margin-top: 1.25rem; }
 
 .painel {
   padding: 1.75rem;
