@@ -907,6 +907,8 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
 /* --------------------------------------------------------------- Santo do Dia */
 
 .santo__ficha {
+  display: flex;
+  align-items: flex-start;
   background: var(--cor-superficie);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
@@ -916,6 +918,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
 
 .santo__moldura {
   position: relative;
+  flex: 0 0 320px;
   min-height: 320px;
   display: flex;
   align-items: flex-end;
@@ -959,7 +962,7 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   text-shadow: 0 2px 10px rgba(0, 0, 0, .6);
 }
 
-.santo__corpo { padding: 1.75rem 2rem 2rem; }
+.santo__corpo { flex: 1 1 0%; min-width: 0; padding: 1.75rem 2rem 2rem; }
 .santo__biografia h3 {
   margin: 1.5rem 0 .5rem;
   font-size: 1.05rem;
@@ -989,6 +992,11 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
   margin-bottom: .6rem;
 }
 .santo__oracao p:last-child { margin-bottom: 0; }
+
+@media (max-width: 780px) {
+  .santo__ficha { flex-direction: column; }
+  .santo__moldura { flex-basis: auto; }
+}
 
 @media (max-width: 640px) {
   .santo__moldura { min-height: 220px; }
