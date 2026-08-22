@@ -32,7 +32,12 @@
     const botaoFechar = document.getElementById("leitor-cic-fechar");
     const PDF_URL = (window.BASE_PATH || "") + "/documentos/catecismo-cic.pdf";
 
+    iframe.addEventListener("load", function () {
+      leitor.classList.remove("leitor-cic--carregando");
+    });
+
     function abrirNaPagina(pagina) {
+      leitor.classList.add("leitor-cic--carregando");
       iframe.src = `${PDF_URL}#page=${pagina}&view=FitH`;
       botaoBaixar.href = PDF_URL;
       paginaLabel.textContent = pagina;

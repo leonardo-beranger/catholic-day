@@ -15,7 +15,12 @@
   const botaoBaixar = document.getElementById("leitor-concilios-baixar");
   const botaoFechar = document.getElementById("leitor-concilios-fechar");
 
+  iframe.addEventListener("load", function () {
+    leitor.classList.remove("leitor-cic--carregando");
+  });
+
   function abrir(pdfUrl, pagina, titulo) {
+    leitor.classList.add("leitor-cic--carregando");
     iframe.src = `${pdfUrl}#page=${pagina}&view=FitH`;
     botaoBaixar.href = pdfUrl;
     const nomeArquivo = pdfUrl.split("/").pop();

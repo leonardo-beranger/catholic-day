@@ -187,7 +187,7 @@
       "refersTo": "button-primary",
       "description": "Ação principal preenchida — usado no botão de baixar PDF do leitor embutido.",
       "html": "<button class=\"ds-btn-primary\">Baixar PDF</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .9rem; border-radius: 999px; background: #6d1f2b; color: #ffffff; font-family: Inter, -apple-system, Segoe UI, Roboto, sans-serif; font-size: .8rem; font-weight: 600; border: none; text-decoration: none; cursor: pointer; transition: background 160ms ease; } .ds-btn-primary:hover { background: #8f3140; } .ds-btn-primary:focus-visible { outline: 2px solid #a9852f; outline-offset: 2px; }"
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .9rem; border-radius: 999px; background: #6d1f2b; color: #ffffff; font-family: Libre Franklin, -apple-system, Segoe UI, Roboto, sans-serif; font-size: .8rem; font-weight: 600; border: none; text-decoration: none; cursor: pointer; transition: background 160ms ease; } .ds-btn-primary:hover { background: #8f3140; } .ds-btn-primary:focus-visible { outline: 2px solid #a9852f; outline-offset: 2px; }"
     },
     {
       "name": "Botão Ghost",
@@ -195,7 +195,7 @@
       "refersTo": "button-ghost",
       "description": "Ação secundária de contorno — usado nas abas de leitura da Liturgia Diária.",
       "html": "<button class=\"ds-btn-ghost\">Ver leitura</button>",
-      "css": ".ds-btn-ghost { padding: .45rem 1.1rem; border-radius: 999px; border: 1px solid #6d1f2b; background: transparent; color: #6d1f2b; font-family: Inter, -apple-system, Segoe UI, Roboto, sans-serif; font-size: .85rem; font-weight: 600; cursor: pointer; transition: background 160ms ease, color 160ms ease; } .ds-btn-ghost:hover { background: #6d1f2b; color: #ffffff; } .ds-btn-ghost:focus-visible { outline: 2px solid #a9852f; outline-offset: 2px; }"
+      "css": ".ds-btn-ghost { padding: .45rem 1.1rem; border-radius: 999px; border: 1px solid #6d1f2b; background: transparent; color: #6d1f2b; font-family: Libre Franklin, -apple-system, Segoe UI, Roboto, sans-serif; font-size: .85rem; font-weight: 600; cursor: pointer; transition: background 160ms ease, color 160ms ease; } .ds-btn-ghost:hover { background: #6d1f2b; color: #ffffff; } .ds-btn-ghost:focus-visible { outline: 2px solid #a9852f; outline-offset: 2px; }"
     },
     {
       "name": "Card (Cartão)",
@@ -242,7 +242,7 @@
     "keyCharacteristics": [
       "Fundo cor de pergaminho, nunca branco puro, exceto nas superfícies elevadas.",
       "Bordô como cor de ação/identidade; ouro como acento textual raro; verde e violeta reservados a marcações litúrgicas.",
-      "Serifa (EB Garamond) em títulos, sans-serif (Inter) no corpo.",
+      "Serifa (EB Garamond) em títulos, sans-serif (Libre Franklin) no corpo.",
       "Componentes discretos e sólidos: bordas finas, cantos moderadamente arredondados, sem gradiente nem glow.",
       "Modo escuro definido via prefers-color-scheme, mesma estrutura de papéis."
     ],
@@ -260,7 +260,7 @@
     ],
     "dos": [
       "Do usar bordô como cor de ação/identidade e ouro como acento textual raro.",
-      "Do manter serifa (EB Garamond) restrita a título e citação; tudo o mais em Inter.",
+      "Do manter serifa (EB Garamond) restrita a título e citação; tudo o mais em Libre Franklin.",
       "Do usar --raio: 10px em containers e 999px (pílula) em toda ação/etiqueta.",
       "Do manter transições em 160ms ease para hover/estado.",
       "Do garantir hover contínuo em qualquer menu suspenso futuro (sem gap entre gatilho e painel)."

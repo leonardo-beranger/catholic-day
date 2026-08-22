@@ -43,17 +43,17 @@ typography:
     fontWeight: 600
     lineHeight: 1.2
   body:
-    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Libre Franklin, -apple-system, Segoe UI, Roboto, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.65
   body-small:
-    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Libre Franklin, -apple-system, Segoe UI, Roboto, sans-serif"
     fontSize: ".9rem"
     fontWeight: 400
     lineHeight: 1.5
   label:
-    fontFamily: "Inter, -apple-system, Segoe UI, Roboto, sans-serif"
+    fontFamily: "Libre Franklin, -apple-system, Segoe UI, Roboto, sans-serif"
     fontSize: ".72rem"
     fontWeight: 600
     letterSpacing: ".08em"
@@ -110,7 +110,7 @@ Nenhuma referência visual de rejeição foi confirmada além do que decorre do 
 **Key Characteristics:**
 - Fundo cor de pergaminho (`#fdfaf4`), nunca branco puro, exceto nas superfícies elevadas (cards, fichas).
 - Bordô como cor de ação e identidade; ouro como acento de destaque textual (etiquetas, ícones); verde e violeta reservados a marcações litúrgicas específicas.
-- Serifa (EB Garamond) em títulos, sans-serif (Inter) no corpo — divisão clássica de leitura longa.
+- Serifa (EB Garamond) em títulos, sans-serif (Libre Franklin) no corpo — divisão clássica de leitura longa.
 - Componentes discretos e sólidos: bordas finas, cantos moderadamente arredondados, sem gradiente nem glow.
 - Modo escuro definido via `prefers-color-scheme`, com a mesma estrutura de papéis (bordô vira um vermelho mais claro para legibilidade sobre fundo escuro).
 
@@ -144,7 +144,7 @@ Paleta de baixa saturação, papel de fundo quente, com quatro acentos que carre
 ## Typography
 
 **Display/Headline/Title Font:** EB Garamond (com Georgia, Times New Roman, serif)
-**Body/Label Font:** Inter (com -apple-system, Segoe UI, Roboto, sans-serif)
+**Body/Label Font:** Libre Franklin (com -apple-system, Segoe UI, Roboto, sans-serif)
 
 **Character:** serifa clássica para títulos dá peso editorial e um tom quase de livro impresso; sans-serif neutra no corpo mantém páginas longas (Catecismo, Suma) legíveis sem cansar — a dupla separa claramente "isto é um título/marco" de "isto é para ler com atenção".
 
@@ -204,7 +204,7 @@ Discretos e sólidos: bordas finas, cantos moderadamente arredondados, sem gradi
 - **Internal Padding:** `1.5rem`–`1.75rem` (card, ficha); `1.75rem` (painel).
 
 ### Inputs / Fields
-- **Style:** borda 1px `--cor-borda`, fundo `--cor-superficie`, raio `10px`, fonte Inter.
+- **Style:** borda 1px `--cor-borda`, fundo `--cor-superficie`, raio `10px`, fonte Libre Franklin.
 - **Focus:** anel dourado (`outline: 2px solid var(--cor-ouro)`, offset 2px) — aplicado globalmente via `:focus-visible`, não por componente.
 
 ### Navigation
@@ -219,7 +219,7 @@ Discretos e sólidos: bordas finas, cantos moderadamente arredondados, sem gradi
 
 ### Do:
 - **Do** usar bordô como cor de ação/identidade e ouro como acento textual raro — são os dois únicos acentos de uso amplo.
-- **Do** manter serifa (EB Garamond) restrita a título e citação; tudo o mais em Inter.
+- **Do** manter serifa (EB Garamond) restrita a título e citação; tudo o mais em Libre Franklin.
 - **Do** usar `--raio: 10px` em containers e `999px` (pílula) em toda ação/etiqueta — não introduzir uma terceira escala de raio.
 - **Do** manter transições em `160ms ease` (`--transicao`) para hover/estado — consistente em todo o sistema.
 - **Do** garantir hover contínuo em qualquer menu suspenso futuro (sem gap entre gatilho e painel), como corrigido no submenu do cabeçalho.

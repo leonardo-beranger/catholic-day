@@ -18,7 +18,7 @@
   --cor-violeta: #5c4571;       /* advento / quaresma */
 
   --fonte-titulo: "EB Garamond", Georgia, "Times New Roman", serif;
-  --fonte-texto: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fonte-texto: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --largura: 1120px;
   --raio: 10px;
@@ -169,8 +169,16 @@ img { max-width: 100%; height: auto; }
 .menu-botao__barras::before { transform: translateY(-6px); }
 .menu-botao__barras::after { transform: translateY(4px); }
 
-.menu { display: flex; gap: 1.75rem; }
-.menu-grupo { position: relative; }
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: baseline;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: .4rem 1.75rem;
+}
+.menu-grupo { position: relative; min-width: 0; }
 
 .menu-grupo__titulo {
   margin: 0 0 .15rem;
@@ -183,7 +191,8 @@ img { max-width: 100%; height: auto; }
 
 .menu ul {
   display: flex;
-  gap: .9rem;
+  flex-wrap: wrap;
+  gap: .4rem .9rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -380,6 +389,8 @@ img { max-width: 100%; height: auto; }
   font-style: italic;
 }
 .hero__citacao footer { font-family: var(--fonte-texto); font-size: .85rem; font-style: normal; color: var(--cor-texto-suave); margin-top: .5rem; }
+.hero__abertura { max-width: 60ch; margin: 0; color: var(--cor-texto-suave); }
+.hero__abertura strong { color: var(--cor-texto); }
 
 /* ------------------------------------------------------------------- Blocos */
 
@@ -452,6 +463,66 @@ a.cartao:hover { transform: translateY(-2px); border-color: var(--cor-ouro); }
 .tema__intro { margin: 0; font-size: .92rem; color: var(--cor-texto-suave); }
 .tema__conteudo { padding: 0 1.75rem 1.75rem; }
 .tema__conteudo .ficha:first-child { margin-top: 1.25rem; }
+
+/* Lista numerada de "chaves" de leitura (Profecias): alternativa ao card
+   generico eyebrow+titulo+texto — numeral serifado como marcador, sem
+   cartao/borda lateral. */
+.lista-chaves {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.lista-chaves > li {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--cor-borda);
+}
+.lista-chaves > li:first-child { border-top: 0; padding-top: 0; }
+.lista-chaves__numero {
+  flex: 0 0 auto;
+  min-width: 2ch;
+  font-family: var(--fonte-titulo);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--cor-ouro);
+}
+.lista-chaves h3 { margin: 0 0 .35rem; color: var(--cor-primaria); }
+.lista-chaves p { margin: 0; font-size: .95rem; color: var(--cor-texto-suave); }
+
+/* Lista de eixos de estudo (Concilios): faixa de numeros como metadado
+   simples ao lado do titulo, sem eyebrow em versalete nem cartao. */
+.lista-eixos {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.lista-eixos > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .3rem 1.25rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--cor-borda);
+}
+.lista-eixos > li:first-child { border-top: 0; padding-top: 0; }
+.lista-eixos__faixa {
+  flex: 0 0 auto;
+  min-width: 9rem;
+  font-size: .84rem;
+  color: var(--cor-texto-suave);
+  font-variant-numeric: tabular-nums;
+}
+.lista-eixos h3 { margin: 0 0 .3rem; font-size: 1.05rem; color: var(--cor-primaria); }
+.lista-eixos p { margin: 0; font-size: .92rem; color: var(--cor-texto-suave); }
+@media (max-width: 560px) {
+  .lista-eixos__faixa { min-width: 0; }
+}
 
 .painel {
   padding: 1.75rem;
@@ -1392,12 +1463,28 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
 }
 .botao-fechar:hover { border-color: var(--cor-primaria); color: var(--cor-primaria); }
 
+.leitor-cic__corpo { position: relative; }
 .leitor-cic__quadro {
   display: block;
   width: 100%;
   height: 75vh;
   border: 0;
 }
+
+.leitor-cic__carregando {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  background: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+  font-size: .88rem;
+}
+.leitor-cic--carregando .leitor-cic__carregando { display: flex; }
+.leitor-cic--carregando .leitor-cic__quadro { visibility: hidden; }
 
 @media (max-width: 640px) {
   .leitor-cic { position: static; }

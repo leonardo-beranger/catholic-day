@@ -26,7 +26,13 @@ descricao: Estrutura, resumos e referências bíblicas do Catecismo da Igreja Ca
               <button type="button" class="botao-fechar" id="leitor-cic-fechar" aria-label="Fechar leitor">✕</button>
             </div>
           </div>
-          <iframe id="leitor-cic-iframe" class="leitor-cic__quadro" title="Leitor do Catecismo da Igreja Católica" loading="lazy"></iframe>
+          <div class="leitor-cic__corpo">
+            <iframe id="leitor-cic-iframe" class="leitor-cic__quadro" title="Leitor do Catecismo da Igreja Católica" loading="lazy"></iframe>
+            <div class="leitor-cic__carregando" id="leitor-cic-carregando">
+              <span class="girador" aria-hidden="true"></span>
+              <p>A carregar o documento…</p>
+            </div>
+          </div>
         </div>
 
       </section>
