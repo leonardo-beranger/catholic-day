@@ -45,34 +45,48 @@ INTRO = """      <section class="secao">
               <button type="button" class="botao-fechar" id="leitor-concilios-fechar" aria-label="Fechar leitor">✕</button>
             </div>
           </div>
-          <iframe id="leitor-concilios-iframe" class="leitor-cic__quadro" title="Leitor de documentos conciliares" loading="lazy"></iframe>
+          <div class="leitor-cic__corpo">
+            <iframe id="leitor-concilios-iframe" class="leitor-cic__quadro" title="Leitor de documentos conciliares" loading="lazy"></iframe>
+            <div class="leitor-cic__carregando" id="leitor-concilios-carregando">
+              <span class="girador" aria-hidden="true"></span>
+              <p>A carregar o documento…</p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="secao">
         <h2>Eixos de estudo</h2>
-        <div class="grade">
-          <div class="cartao">
-            <span class="cartao__etiqueta">Eixo 1 · Concílios 1-7</span>
-            <h3>Concílios cristológicos</h3>
-            <p>De Niceia a Niceia II: a Trindade e as duas naturezas de Cristo.</p>
-          </div>
-          <div class="cartao">
-            <span class="cartao__etiqueta">Eixo 2 · Concílios 8-19</span>
-            <h3>Reforma e disciplina</h3>
-            <p>Os concílios medievais e Trento diante das crises da Igreja.</p>
-          </div>
-          <div class="cartao">
-            <span class="cartao__etiqueta">Eixo 3 · Concílios 20-21</span>
-            <h3>Concílios modernos</h3>
-            <p>Vaticano I e Vaticano II: fé e razão, Igreja e mundo contemporâneo.</p>
-          </div>
-          <div class="cartao">
-            <span class="cartao__etiqueta">Eixo 4</span>
-            <h3>Hermenêutica conciliar</h3>
-            <p>Continuidade e ruptura: como ler os textos conciliares corretamente.</p>
-          </div>
-        </div>
+        <ol class="lista-eixos">
+          <li>
+            <span class="lista-eixos__faixa">Concílios 1–7</span>
+            <div>
+              <h3>Concílios cristológicos</h3>
+              <p>De Niceia a Niceia II: a Trindade e as duas naturezas de Cristo.</p>
+            </div>
+          </li>
+          <li>
+            <span class="lista-eixos__faixa">Concílios 8–19</span>
+            <div>
+              <h3>Reforma e disciplina</h3>
+              <p>Os concílios medievais e Trento diante das crises da Igreja.</p>
+            </div>
+          </li>
+          <li>
+            <span class="lista-eixos__faixa">Concílios 20–21</span>
+            <div>
+              <h3>Concílios modernos</h3>
+              <p>Vaticano I e Vaticano II: fé e razão, Igreja e mundo contemporâneo.</p>
+            </div>
+          </li>
+          <li>
+            <span class="lista-eixos__faixa">Transversal</span>
+            <div>
+              <h3>Hermenêutica conciliar</h3>
+              <p>Continuidade e ruptura: como ler os textos conciliares corretamente.</p>
+            </div>
+          </li>
+        </ol>
       </section>
 
       <section class="secao">
