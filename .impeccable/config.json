@@ -1,0 +1,41 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "estatico/css/estilos.css"
+        ],
+        "createdAt": "2026-08-22T21:43:31.012Z",
+        "reason": "Borda esquerda de 3px em cor de acento é a linguagem visual documentada em DESIGN.md (secao Shapes/Components: ficha, citacao, painel de calendario) - pre-existente ao code, nao introduzido por IA, e o padrao 'card com borda lateral' descrito no proprio DESIGN.md que escrevi a partir do CSS incumbente"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "4px)",
+        "createdAt": "2026-08-22T21:43:36.346Z",
+        "reason": "Falso positivo de parsing regex: valor real e calc(var(--raio) - 4px) (estilos.css:238), token documentado, o detector so capturou o final da expressao calc()"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(0, 0, 0, .55)",
+        "createdAt": "2026-08-22T21:43:50.524Z",
+        "reason": "Scrim de gradiente sobre foto do santo (santo__vinheta) para legibilidade do texto - preto neutro, nao e cor de marca, nao pertence a paleta de tokens"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(0, 0, 0, .6)",
+        "createdAt": "2026-08-22T21:43:50.642Z",
+        "reason": "text-shadow sobre foto do santo (santo__nome) para legibilidade - mesmo motivo do scrim acima"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(0, 0, 0, .12)",
+        "createdAt": "2026-08-22T21:43:50.747Z",
+        "reason": "Scrim de gradiente sobre foto do carrossel de noticias (carrossel__vinheta), mesmo padrao"
+      }
+    ]
+  }
+}

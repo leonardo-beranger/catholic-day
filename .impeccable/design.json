@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-22T18:55:00.000Z",
+  "title": "Design System: Catholic Day",
+  "extensions": {
+    "colorMeta": {
+      "bordo-profundo": {
+        "role": "primary",
+        "displayName": "Bordô Profundo",
+        "canonical": "#6d1f2b",
+        "tonalRamp": [
+          "#2a0c11",
+          "#421621",
+          "#5a1e28",
+          "#6d1f2b",
+          "#8f3140",
+          "#b35a68",
+          "#d69aa4",
+          "#f2d8dc"
+        ]
+      },
+      "ouro-envelhecido": {
+        "role": "secondary",
+        "displayName": "Ouro Envelhecido",
+        "canonical": "#a9852f",
+        "tonalRamp": [
+          "#3a2d10",
+          "#5c481a",
+          "#7e6423",
+          "#a9852f",
+          "#c4a352",
+          "#d9c082",
+          "#ecdcb5",
+          "#f8f0dd"
+        ]
+      },
+      "verde-musgo": {
+        "role": "tertiary",
+        "displayName": "Verde Musgo",
+        "canonical": "#3f6350",
+        "tonalRamp": [
+          "#152219",
+          "#213629",
+          "#2e4b39",
+          "#3f6350",
+          "#5c8871",
+          "#87ac97",
+          "#bad4c3",
+          "#e6f0ea"
+        ]
+      },
+      "violeta-acinzentado": {
+        "role": "tertiary",
+        "displayName": "Violeta Acinzentado",
+        "canonical": "#5c4571",
+        "tonalRamp": [
+          "#1f1826",
+          "#332740",
+          "#48375a",
+          "#5c4571",
+          "#7c6294",
+          "#a693ba",
+          "#cbc0dc",
+          "#ece7f2"
+        ]
+      },
+      "fundo-pergaminho": {
+        "role": "neutral",
+        "displayName": "Pergaminho",
+        "canonical": "#fdfaf4",
+        "tonalRamp": [
+          "#1a1712",
+          "#2c281f",
+          "#463f30",
+          "#6b6047",
+          "#c9bfa6",
+          "#e6ddc9",
+          "#f4eee0",
+          "#fdfaf4"
+        ]
+      },
+      "superficie": {
+        "role": "neutral",
+        "displayName": "Branco Puro",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#333333",
+          "#4d4d4d",
+          "#808080",
+          "#b3b3b3",
+          "#d9d9d9",
+          "#f2f2f2",
+          "#ffffff"
+        ]
+      },
+      "texto": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#241f1c",
+        "tonalRamp": [
+          "#0d0b0a",
+          "#241f1c",
+          "#3d352f",
+          "#5f574e",
+          "#8a8074",
+          "#b3a99f",
+          "#d9d2c8",
+          "#f2ece4"
+        ]
+      },
+      "ouro-texto": {
+        "role": "secondary",
+        "displayName": "Ouro Texto",
+        "canonical": "#83641b",
+        "tonalRamp": [
+          "#2b210b",
+          "#453511",
+          "#5f4816",
+          "#83641b",
+          "#a3812c",
+          "#c2a052",
+          "#ddc084",
+          "#f0e3c2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "h1, título de página."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "h2, título de seção."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h3, título de card/ficha."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Parágrafo corrido, linha alta para leitura longa."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etiquetas de categoria, cabeçalho de tabela, selo bíblico."
+      },
+      "photo-headline": {
+        "displayName": "Photo Headline",
+        "purpose": "Titulo sobre imagem: nome do santo, titulo de card do carrossel de noticias."
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Subtitulo de pagina, marca no cabecalho, titulo de secao recolhivel do leitor do CIC."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Variante compacta do corpo: legenda de ficha, nota de citacao, texto de card, resumo de tabela."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sombra-padrao",
+        "value": "0 1px 2px rgba(36,31,28,.06), 0 8px 24px rgba(36,31,28,.06)",
+        "purpose": "Única sombra do sistema, aplicada a toda superfície elevada (card, ficha, painel, submenu, leitor de PDF). Não é uma escala deliberada de elevação — valor único reaproveitado; o autor confirma que não foi pensado como filosofia de profundidade."
+      }
+    ],
+    "motion": [
+      {
+        "name": "transicao-padrao",
+        "value": "160ms ease",
+        "purpose": "Transição padrão de hover/estado em toda a interface (--transicao)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "menu-colapsa",
+        "value": "1060px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão Primário",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal preenchida — usado no botão de baixar PDF do leitor embutido.",
+      "html": "<button class=\"ds-btn-primary\">Baixar PDF</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .9rem; border-radius: 999px; background: #6d1f2b; color: #ffffff; font-family: Inter, -apple-system, Segoe UI, Roboto, sans-serif; font-size: .8rem; font-weight: 600; border: none; text-decoration: none; cursor: pointer; transition: background 160ms ease; } .ds-btn-primary:hover { background: #8f3140; } .ds-btn-primary:focus-visible { outline: 2px solid #a9852f; outline-offset: 2px; }"
+    },
+    {
+      "name": "Botão Ghost",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Ação secundária de contorno — usado nas abas de leitura da Liturgia Diária.",
+      "html": "<button class=\"ds-btn-ghost\">Ver leitura</button>",
+      "css": ".ds-btn-ghost { padding: .45rem 1.1rem; border-radius: 999px; border: 1px solid #6d1f2b; background: transparent; color: #6d1f2b; font-family: Inter, -apple-system, Segoe UI, Roboto, sans-serif; font-size: .85rem; font-weight: 600; cursor: pointer; transition: background 160ms ease, color 160ms ease; } .ds-btn-ghost:hover { background: #6d1f2b; color: #ffffff; } .ds-btn-ghost:focus-visible { outline: 2px solid #a9852f; outline-offset: 2px; }"
+    },
+    {
+      "name": "Card (Cartão)",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Cartão de navegação genérico — usado na grade da página inicial e nas categorias-placeholder.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-tag\">Categoria</span><h3>Título do cartão</h3><p>Descrição breve do conteúdo ao qual este cartão leva.</p></a>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: .5rem; padding: 1.5rem; background: #ffffff; border: 1px solid #e4dac4; border-radius: 10px; box-shadow: 0 1px 2px rgba(36,31,28,.06), 0 8px 24px rgba(36,31,28,.06); text-decoration: none; color: #241f1c; transition: transform 160ms ease, border-color 160ms ease; } .ds-card:hover { transform: translateY(-2px); border-color: #a9852f; } .ds-card h3 { margin: 0; font-family: \"EB Garamond\", Georgia, serif; color: #6d1f2b; } .ds-card p { margin: 0; font-size: .92rem; color: #5f574e; } .ds-card-tag { align-self: flex-start; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: #83641b; font-weight: 600; }"
+    },
+    {
+      "name": "Ficha de Conteúdo",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Bloco de conteúdo doutrinal citável (profecia, conceito, termo) — sempre com referência em destaque no cabeçalho.",
+      "html": "<article class=\"ds-ficha\"><div class=\"ds-ficha-cab\"><h3>Título da ficha</h3><span class=\"ds-ficha-ref\">Referência</span></div><p>Texto explicativo da ficha, com o argumento doutrinal desenvolvido em prosa corrida.</p></article>",
+      "css": ".ds-ficha { margin-top: 1.25rem; padding: 1.5rem 1.75rem; background: #ffffff; border: 1px solid #e4dac4; border-left: 3px solid #a9852f; border-radius: 10px; box-shadow: 0 1px 2px rgba(36,31,28,.06), 0 8px 24px rgba(36,31,28,.06); } .ds-ficha-cab { display: flex; flex-wrap: wrap; align-items: baseline; gap: .75rem; margin-bottom: .75rem; } .ds-ficha-cab h3 { margin: 0; font-family: \"EB Garamond\", Georgia, serif; color: #6d1f2b; } .ds-ficha-ref { margin-left: auto; font-size: .8rem; font-weight: 600; color: #83641b; white-space: nowrap; }"
+    },
+    {
+      "name": "Selo Bíblico",
+      "kind": "chip",
+      "refersTo": "badge-scripture",
+      "description": "Pastilha de referência bíblica curta, usada em conjunto (cumprimento de profecia, referências de CIC).",
+      "html": "<span class=\"ds-selo-biblia\">Mt 1,1</span>",
+      "css": ".ds-selo-biblia { display: inline-block; padding: .1rem .5rem; border-radius: 999px; background: #ffffff; border: 1px solid #e4dac4; font-size: .78rem; color: #5f574e; }"
+    },
+    {
+      "name": "Selo Litúrgico",
+      "kind": "chip",
+      "description": "Pastilha com ponto colorido indicando tempo/cor litúrgica.",
+      "html": "<span class=\"ds-selo ds-selo--verde\">Tempo Comum</span>",
+      "css": ".ds-selo { display: inline-flex; align-items: center; gap: .4rem; padding: .15rem .6rem; border-radius: 999px; font-size: .74rem; font-weight: 500; border: 1px solid #e4dac4; } .ds-selo::before { content: \"\"; width: 8px; height: 8px; border-radius: 50%; background: currentColor; } .ds-selo--verde { color: #3f6350; } .ds-selo--violeta { color: #5c4571; } .ds-selo--branco { color: #a9852f; } .ds-selo--vermelho { color: #6d1f2b; }"
+    },
+    {
+      "name": "Quadro Expansível (Tema)",
+      "kind": "custom",
+      "description": "details/summary estilizado como quadrado clicável que expande para mostrar fichas de uma categoria — sem JavaScript, usa o comportamento nativo do <details>.",
+      "html": "<details class=\"ds-tema\"><summary class=\"ds-tema-cab\"><span><span class=\"ds-card-tag\">Categoria 1</span><h3>Nome do tema</h3></span><span class=\"ds-tema-seta\">▾</span></summary><div class=\"ds-tema-conteudo\"><p>Conteúdo revelado ao expandir.</p></div></details>",
+      "css": ".ds-tema { background: #ffffff; border: 1px solid #e4dac4; border-radius: 10px; box-shadow: 0 1px 2px rgba(36,31,28,.06), 0 8px 24px rgba(36,31,28,.06); transition: border-color 160ms ease; } .ds-tema[open] { border-color: #a9852f; } .ds-tema-cab { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 1.75rem; cursor: pointer; list-style: none; } .ds-tema-cab::-webkit-details-marker { display: none; } .ds-tema-cab h3 { margin: 0; font-family: \"EB Garamond\", Georgia, serif; color: #6d1f2b; } .ds-tema-seta { font-size: .8rem; color: #a9852f; transition: transform 160ms ease; } .ds-tema[open] .ds-tema-seta { transform: rotate(180deg); } .ds-tema-conteudo { padding: 0 1.75rem 1.75rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Lumen Fidei",
+    "overview": "O próprio código já batiza o sistema — \"Lumen Fidei — folha de estilos base\", paleta inspirada nas cores litúrgicas: bordô, ouro velho e pergaminho. É a luz da fé mediada por um objeto quase físico: fundo cor de pergaminho, tipografia serifada nos títulos, cores litúrgicas usadas com parcimônia para marcar tempo e sentido, não para decorar. O clima é sóbrio e litúrgico, mas com um tom deliberadamente descontraído — não é um site que imita um missal solene do início ao fim; é mais perto de um caderno de estudo bem cuidado, sério no conteúdo sem ser hermético na forma.",
+    "keyCharacteristics": [
+      "Fundo cor de pergaminho, nunca branco puro, exceto nas superfícies elevadas.",
+      "Bordô como cor de ação/identidade; ouro como acento textual raro; verde e violeta reservados a marcações litúrgicas.",
+      "Serifa (EB Garamond) em títulos, sans-serif (Inter) no corpo.",
+      "Componentes discretos e sólidos: bordas finas, cantos moderadamente arredondados, sem gradiente nem glow.",
+      "Modo escuro definido via prefers-color-scheme, mesma estrutura de papéis."
+    ],
+    "rules": [
+      {
+        "name": "A Regra da Parcimônia Litúrgica",
+        "body": "Verde e violeta nunca são cor de fundo ou de texto corrido — só em selos, bordas de destaque e ícones, marcando um tempo ou tipo de conteúdo específico.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Livro-Caderno",
+        "body": "Serifa é reservada a título e citação; todo o resto fica em sans-serif.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do usar bordô como cor de ação/identidade e ouro como acento textual raro.",
+      "Do manter serifa (EB Garamond) restrita a título e citação; tudo o mais em Inter.",
+      "Do usar --raio: 10px em containers e 999px (pílula) em toda ação/etiqueta.",
+      "Do manter transições em 160ms ease para hover/estado.",
+      "Do garantir hover contínuo em qualquer menu suspenso futuro (sem gap entre gatilho e painel)."
+    ],
+    "donts": [
+      "Don't usar verde ou violeta como cor de fundo ou de texto corrido.",
+      "Don't introduzir gradientes, glow ou sombra dramática.",
+      "Don't adicionar dependência de build para atingir um efeito visual."
+    ]
+  }
+}
