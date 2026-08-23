@@ -36,6 +36,12 @@
 {{menu}}
         </ul>
       </nav>
+
+      <div class="busca" id="busca">
+        <label class="sr" for="busca-input">Buscar temas no site</label>
+        <input type="search" id="busca-input" class="busca__input" placeholder="Buscar temas…" autocomplete="off" spellcheck="false">
+        <ul class="busca__resultados" id="busca-resultados" hidden></ul>
+      </div>
     </div>
   </header>
 
@@ -64,6 +70,7 @@
   </footer>
 
   <script src="/estatico/js/principal.js"></script>
+  <script src="/estatico/js/busca.js"></script>
   {{scripts}}
 </body>
 </html>

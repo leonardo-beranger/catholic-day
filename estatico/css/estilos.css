@@ -336,6 +336,76 @@ img { max-width: 100%; height: auto; }
   color: var(--cor-primaria);
 }
 
+/* Barra de pesquisa do cabecalho. */
+.busca {
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 8rem;
+  max-width: 13rem;
+}
+.busca__input {
+  width: 100%;
+  padding: .45rem .9rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 999px;
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font-family: var(--fonte-texto);
+  font-size: .85rem;
+}
+.busca__input::placeholder { color: var(--cor-texto-suave); }
+.busca__input:focus-visible { outline: 2px solid var(--cor-ouro); outline-offset: 2px; }
+
+.busca__resultados {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 25;
+  margin: .5rem 0 0;
+  padding: .5rem;
+  list-style: none;
+  min-width: 20rem;
+  max-width: min(90vw, 26rem);
+  max-height: 70vh;
+  overflow-y: auto;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+.busca__resultados[hidden] { display: none; }
+.busca__resultados li + li { margin-top: .15rem; }
+.busca__resultados a {
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  padding: .55rem .7rem;
+  border-radius: calc(var(--raio) - 4px);
+  text-decoration: none;
+  color: inherit;
+}
+.busca__resultados a:hover,
+.busca__resultados a:focus-visible {
+  background: var(--cor-fundo-alt);
+  outline: none;
+}
+.busca__resultado-titulo { font-weight: 600; color: var(--cor-primaria); font-size: .92rem; }
+.busca__resultado-titulo mark, .busca__resultado-resumo mark {
+  background: color-mix(in srgb, var(--cor-ouro) 35%, transparent);
+  color: inherit;
+  border-radius: 2px;
+}
+.busca__resultado-pagina { font-size: .74rem; color: var(--cor-ouro-texto); }
+.busca__resultado-resumo {
+  font-size: .84rem;
+  color: var(--cor-texto-suave);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.busca__vazio { padding: .55rem .7rem; font-size: .88rem; color: var(--cor-texto-suave); }
+
 @media (max-width: 1060px) {
   .menu-botao { display: block; }
   .menu {
@@ -376,6 +446,10 @@ img { max-width: 100%; height: auto; }
   }
   .submenu--colunas > ul { min-width: 0; padding: 0; }
   .submenu--colunas > ul + ul { border-left: none; margin-top: .5rem; }
+
+  .cabecalho__linha { flex-wrap: wrap; }
+  .busca { order: 3; flex-basis: 100%; max-width: none; margin-top: .75rem; }
+  .busca__resultados { left: 0; right: 0; min-width: 0; max-width: none; }
 }
 
 /* ------------------------------------------------------- Cabeçalho da página */
