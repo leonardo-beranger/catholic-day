@@ -174,11 +174,27 @@ def montar_menu_cabecalho(paginas: list[Pagina], atual: Pagina) -> str:
             for p in itens
         )
         ativo = ' aria-current="true"' if secao_ativa else ""
-        links = "\n".join(_montar_item_pagina(p, atual, filhos_por_pai, "                ") for p in itens)
+
+        # Secoes com muitas paginas ganham painel em duas colunas explicitas
+        # (mais previsivel que CSS multi-coluna com poucos itens); secoes
+        # curtas ficam numa coluna so, como antes.
+        if len(itens) > 5:
+            meio = (len(itens) + 1) // 2
+            col_a = "\n".join(_montar_item_pagina(p, atual, filhos_por_pai, "                  ") for p in itens[:meio])
+            col_b = "\n".join(_montar_item_pagina(p, atual, filhos_por_pai, "                  ") for p in itens[meio:])
+            links = (
+                f'              <ul>\n{col_a}\n              </ul>\n'
+                f'              <ul>\n{col_b}\n              </ul>'
+            )
+            painel = f'            <div class="submenu submenu--colunas">\n{links}\n            </div>'
+        else:
+            links = "\n".join(_montar_item_pagina(p, atual, filhos_por_pai, "                ") for p in itens)
+            painel = f'            <ul class="submenu">\n{links}\n            </ul>'
+
         grupos.append(
             f'          <li class="menu-item menu-item--tem-submenu">\n'
             f'            <button type="button" class="menu-grupo__gatilho"{ativo}>{rotulo}</button>\n'
-            f'            <ul class="submenu">\n{links}\n            </ul>\n'
+            f"{painel}\n"
             f"          </li>"
         )
     return "\n".join(grupos)
