@@ -17,6 +17,7 @@ import shutil
 import sys
 import time
 from dataclasses import dataclass, field
+from html.parser import HTMLParser
 from pathlib import Path
 
 RAIZ = Path(__file__).parent
@@ -263,6 +264,96 @@ def prefixar_base_path(html: str) -> str:
     return _PADRAO_CAMINHO_ABSOLUTO.sub(rf'\1="{BASE_PATH}/', html)
 
 
+class _ColetorTexto(HTMLParser):
+    """Percorre o HTML de uma pagina e extrai, em ordem, o texto de cada
+    titulo (h2/h3/h4) e paragrafo/item (p/li), junto com o id do elemento
+    envolvente mais proximo (a "ancora" para onde a busca deve levar)."""
+
+    TAGS_ALVO = {"h2", "h3", "h4", "p", "li"}
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.pilha_ids: list[str | None] = []
+        self.itens: list[tuple[str, str | None, str]] = []
+        self._captura: list[list] = []  # pilha de [tag, ancora, partes_de_texto]
+
+    def _ancora_atual(self) -> str | None:
+        for i in reversed(self.pilha_ids):
+            if i:
+                return i
+        return None
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attrs_d = dict(attrs)
+        self.pilha_ids.append(attrs_d.get("id"))
+        if tag in self.TAGS_ALVO:
+            self._captura.append([tag, self._ancora_atual(), []])
+
+    def handle_data(self, data: str) -> None:
+        if self._captura:
+            self._captura[-1][2].append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in self.TAGS_ALVO and self._captura and self._captura[-1][0] == tag:
+            _, ancora, partes = self._captura.pop()
+            texto = re.sub(r"\s+", " ", "".join(partes)).strip()
+            # Um <li>/<p> que envolve um titulo (h2/h3/h4) aninhado — como os
+            # itens numerados de .lista-chaves/.lista-eixos — so recolhe, na
+            # sua propria captura, o texto "sobrando" fora do titulo (ex.: o
+            # numeral decorativo). Descartar esse resto curto evita anexa-lo
+            # ao resumo do titulo seguinte.
+            if texto and (tag in ("h2", "h3", "h4") or len(texto) >= 3):
+                self.itens.append((tag, ancora, texto))
+        if self.pilha_ids:
+            self.pilha_ids.pop()
+
+
+def extrair_entradas_busca(pagina: "Pagina") -> list[dict]:
+    """Gera entradas de busca a partir do conteudo de uma pagina: uma por
+    titulo (h2/h3/h4) encontrado, com um trecho do texto que o segue e um
+    link direto (com #ancora quando o bloco tiver id), alem de uma entrada
+    para a propria pagina."""
+    coletor = _ColetorTexto()
+    coletor.feed(pagina.corpo)
+
+    entradas = [{
+        "titulo": pagina.titulo,
+        "pagina": pagina.titulo,
+        "url": pagina.url,
+        "resumo": pagina.subtitulo or pagina.descricao,
+    }]
+
+    pendente: dict | None = None
+    for tag, ancora, texto in coletor.itens:
+        if tag in ("h2", "h3", "h4"):
+            pendente = {
+                "titulo": texto,
+                "pagina": pagina.titulo,
+                "url": pagina.url + (f"#{ancora}" if ancora else ""),
+                "resumo": "",
+            }
+            entradas.append(pendente)
+        elif pendente is not None and len(pendente["resumo"]) < 220:
+            junte = (pendente["resumo"] + " " + texto).strip()
+            pendente["resumo"] = junte[:280]
+
+    return entradas
+
+
+def gerar_indice_busca(paginas: list["Pagina"]) -> None:
+    """Grava dist/dados/busca.json: indice usado pela barra de pesquisa do
+    cabecalho (estatico/js/busca.js) para achar temas dentro das paginas,
+    nao so os titulos do menu."""
+    entradas: list[dict] = []
+    for pagina in paginas:
+        entradas.extend(extrair_entradas_busca(pagina))
+
+    destino = DIST / "dados" / "busca.json"
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(json.dumps(entradas, ensure_ascii=False), encoding="utf-8")
+    print(f"  gerado  {destino.relative_to(RAIZ)} ({len(entradas)} entradas)")
+
+
 def gerar() -> None:
     limpar_dist()
     DIST.mkdir(parents=True, exist_ok=True)
@@ -335,6 +426,7 @@ def gerar() -> None:
         json.dumps(indice, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
+    gerar_indice_busca(paginas)
     gerar_seo(paginas)
 
     print(f"\n{len(paginas)} páginas geradas em dist/")
