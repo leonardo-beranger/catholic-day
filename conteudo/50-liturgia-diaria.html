@@ -5,19 +5,34 @@ menu: Liturgia Diária
 secao: vivencia
 ordem: 50
 scripts: liturgia.js
-subtitulo: As leituras da Missa de hoje.
-descricao: Leituras, salmo responsorial e Evangelho da liturgia diária da Igreja Católica, carregados automaticamente para o dia de hoje.
+subtitulo: As leituras da Missa de hoje — e de toda a semana.
+descricao: Leituras, salmo responsorial e Evangelho da liturgia diária da Igreja Católica. Abre no dia de hoje e permite percorrer a semana atual, a anterior e a seguinte.
 ---
       <section class="secao">
         <div class="liturgia" id="liturgia">
 
           <header class="liturgia__cabecalho">
-            <p class="cartao__etiqueta">Liturgia de hoje</p>
-            <h2 data-data-hoje>—</h2>
+            <p class="cartao__etiqueta" id="liturgia-etiqueta">Liturgia de hoje</p>
+            <h2 id="liturgia-data">—</h2>
             <p class="liturgia__celebracao">
               <span id="liturgia-celebracao" class="liturgia__titulo-celebracao">A carregar…</span>
               <span id="liturgia-cor" class="selo" hidden></span>
             </p>
+
+            <nav class="liturgia__semana" aria-label="Escolher o dia da liturgia">
+              <div class="liturgia__semana-topo">
+                <button type="button" class="liturgia__semana-seta" id="liturgia-semana-anterior"
+                        aria-label="Semana anterior">‹</button>
+                <p class="liturgia__semana-rotulo" id="liturgia-semana-rotulo" aria-live="polite">—</p>
+                <button type="button" class="liturgia__semana-seta" id="liturgia-semana-seguinte"
+                        aria-label="Semana seguinte">›</button>
+              </div>
+              <div class="liturgia__semana-dias" id="liturgia-semana-dias"
+                   role="group" aria-label="Dias da semana"></div>
+              <button type="button" class="botao-acao liturgia__semana-hoje" id="liturgia-hoje" hidden>
+                Voltar a hoje
+              </button>
+            </nav>
 
             <div class="liturgia__fonte" role="group" aria-label="Ajustar tamanho da letra">
               <span class="liturgia__fonte-legenda">Tamanho da letra</span>
@@ -85,7 +100,8 @@ descricao: Leituras, salmo responsorial e Evangelho da liturgia diária da Igrej
           visita, da API pública
           <a href="https://liturgia.up.railway.app/v2/" target="_blank" rel="noopener">liturgia.up.railway.app</a>,
           que publica a liturgia diária em português do Brasil. Nada é armazenado neste site:
-          a cada acesso, os textos são buscados na origem para o dia corrente.
+          os textos são buscados na origem a cada dia que o leitor abre, e ficam apenas em
+          memória enquanto a página estiver aberta.
           Para conferir ou comparar, consulte também a
           <a href="https://liturgia.cancaonova.com/pb/" target="_blank" rel="noopener">Liturgia
           Diária da Canção Nova</a>. Os textos litúrgicos e bíblicos pertencem aos seus

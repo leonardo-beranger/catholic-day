@@ -939,6 +939,133 @@ tbody tr:hover { background: var(--cor-fundo-alt); }
 }
 .liturgia__titulo-celebracao { font-weight: 500; }
 
+/* Navegacao pela semana: setas, rotulo do intervalo e os sete dias.
+   Limitada a tres semanas (anterior, atual, seguinte) — nos extremos as
+   setas ficam desactivadas em vez de desaparecer, para o controlo nao
+   mudar de tamanho enquanto o leitor navega. */
+.liturgia__semana {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.liturgia__semana-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.liturgia__semana-rotulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--cor-texto);
+}
+.liturgia__semana-seta {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-primaria);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--transicao), background var(--transicao);
+}
+.liturgia__semana-seta:hover:not(:disabled) {
+  background: var(--cor-primaria);
+  color: #fff;
+  border-color: var(--cor-primaria);
+}
+.liturgia__semana-seta:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.liturgia__semana-dias {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: .35rem;
+  margin-top: .75rem;
+}
+.liturgia__dia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .15rem;
+  padding: .5rem .2rem .45rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+  font-family: var(--fonte-texto);
+  cursor: pointer;
+  transition: color var(--transicao), background var(--transicao),
+              border-color var(--transicao);
+}
+.liturgia__dia:hover { color: var(--cor-texto); border-color: var(--cor-primaria); }
+.liturgia__dia-semana {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.liturgia__dia-numero {
+  font-family: var(--fonte-titulo);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* O dia a mostra. */
+.liturgia__dia[aria-pressed="true"] {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #fff;
+}
+
+/* Hoje, quando nao e o dia a mostra: ponto de ouro sob o numero. */
+.liturgia__dia--hoje:not([aria-pressed="true"]) .liturgia__dia-numero {
+  position: relative;
+}
+.liturgia__dia--hoje:not([aria-pressed="true"]) .liturgia__dia-numero::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -.3rem;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: var(--cor-ouro);
+}
+
+/* No tema escuro a cor primaria e um vermelho claro: texto branco sobre ela
+   nao tem contraste suficiente, e o dia escolhido e justamente o que precisa
+   de ler-se de imediato. */
+@media (prefers-color-scheme: dark) {
+  .liturgia__dia[aria-pressed="true"] { color: #17141a; }
+  .liturgia__semana-seta:hover:not(:disabled) { color: #17141a; }
+}
+
+.liturgia__semana-hoje { margin-top: .75rem; }
+
+/* Telas estreitas: os sete dias continuam em uma linha, mais compactos. */
+@media (max-width: 520px) {
+  .liturgia__semana-dias { gap: .25rem; }
+  .liturgia__dia { padding: .45rem .1rem .4rem; }
+  .liturgia__dia-semana { font-size: .6rem; letter-spacing: 0; }
+  .liturgia__dia-numero { font-size: .95rem; }
+  .liturgia__semana-rotulo { font-size: .9rem; }
+}
+
 .liturgia__fonte {
   display: flex;
   align-items: center;
